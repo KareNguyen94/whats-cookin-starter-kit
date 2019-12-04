@@ -1,18 +1,22 @@
 * {
   margin: 0px;
   padding: 0px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: lightblue;
+  padding: 0px 10px 15px 10px;
 }
 
 h1 {
   font-size: 270%;
   text-align: center;
+  background-color: lightblue;
+  padding-top: 15px;
 }
 
 .user-header {
@@ -26,6 +30,8 @@ h1 {
 .my-favorites,
 .to-cook {
   font-size: 100%;
+  background-color: lightblue;
+  border: none;
 }
 
 .search-header {
@@ -36,7 +42,7 @@ h1 {
 
 .search-input {
   border: 1px solid;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 20px 0px 0px 20px;
   font-size: 90%;
   padding:2%;
   width: 100%;
@@ -44,9 +50,40 @@ h1 {
 }
 
 .search-button {
-  background-color: pink;
-  border: 1 solid;
-  border-radius: 0px 5px 5px 0px;
-  height: 42px;
+  background-color: lightgray;
+  border: 1px solid;
+  border-radius: 0px 20px 20px 0px;
+  height: 43px;
   width: 55px;
+}
+
+main {
+  padding: 2%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+article {
+  height: auto;
+  width: 290px;
+  overflow-wrap: break-word;
+  margin: 3%;
+  border: 1px solid;
+  background-color: white;
+}
+
+img {
+  border-bottom: 1px solid;
+}
+
+p {
+  padding: 2% 3%;
+}
+
+body {
+  background-image: url("https://png.pngtree.com/png-vector/20190318/ourlarge/pngtree-food-doodle-seamless-pattern-png-image_858332.jpg");
+  background-repeat: repeat;
+  background: linear-gradient( rgba(255, 255, 255, .7), rgba(255, 255, 255, 0.7)), url("https://png.pngtree.com/png-vector/20190318/ourlarge/pngtree-food-doodle-seamless-pattern-png-image_858332.jpg");
+  background-size: 300px;
 }
