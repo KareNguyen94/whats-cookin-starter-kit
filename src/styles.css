@@ -10,6 +10,7 @@ header {
   align-items: center;
   background-color: lightblue;
   padding: 0px 10px 15px 10px;
+  border-bottom: 1px dashed;
 }
 
 h1 {
@@ -86,4 +87,5 @@ body {
   background-repeat: repeat;
   background: linear-gradient( rgba(255, 255, 255, .7), rgba(255, 255, 255, 0.7)), url("https://png.pngtree.com/png-vector/20190318/ourlarge/pngtree-food-doodle-seamless-pattern-png-image_858332.jpg");
   background-size: 300px;
+  border: 1px solid;
 }
