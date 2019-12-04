@@ -8,8 +8,8 @@ describe('ingredients', function() {
     expect(Pantry).to.be.a('function');
   });
 
-  it('should be an instance of Turn', function() {
-    const turn = new Pantry();
-    expect(turn).to.be.an.instanceof(Pantry);
+  it('should be an instance of Pantry', function() {
+    const pantry = new Pantry();
+    expect(pantry).to.be.an.instanceof(Pantry);
   });
 });
