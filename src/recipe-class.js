@@ -1,11 +1,15 @@
 class Recipe {
-  constructor(name, id, ingredients, instructions, tags) {
-    this.name = name;
-    this.id = id;
-    this.ingredients = ingredients;
-    this.instructions = instructions;
-    this.tags = tags;
+  constructor(recipe) {
+    this.name = recipe.name;
+    this.id = recipe.id;
+    this.ingredients = recipe.ingredients;
+    this.instructions = recipe.instructions;
+    this.tags = recipe.tags;
     this.favorite = false;
+  }
+
+  favoriteRecipe() {
+    this.favorite = !this.favorite
   }
 
   showSteps() {
