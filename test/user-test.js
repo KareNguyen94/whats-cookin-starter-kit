@@ -17,6 +17,7 @@ describe('recipes', function () {
   });
 
   it('should be an instance of User', function () {
+    // console.log(user);
     expect(user).to.be.an.instanceof(User);
   });
 
