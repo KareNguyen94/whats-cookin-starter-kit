@@ -17,6 +17,7 @@ describe('recipes', function() {
   });
 
   it('should be an instance of Recipe', function() {
+    // console.log(recipe);
     expect(recipe).to.be.an.instanceof(Recipe);
   });
 
@@ -44,8 +45,8 @@ describe('recipes', function() {
     expect(recipe.favorite).to.equal(false);
   });
 
-  it('should let you favorite', function() {
-    recipe.favoriteRecipe();
+  it.only('should let you favorite', function() {
+    recipe.toggleFavorite(recipe);
     expect(recipe.favorite).to.equal(true);
   });
 });
