@@ -5,11 +5,6 @@ class Recipe {
     this.ingredients = recipe.ingredients;
     this.instructions = recipe.instructions;
     this.tags = recipe.tags;
-    this.favorite = false;
-  }
-
-  favoriteRecipe() {
-    this.favorite = !this.favorite
   }
 
   showSteps() {
