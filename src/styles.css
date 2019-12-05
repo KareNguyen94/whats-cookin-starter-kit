@@ -73,7 +73,7 @@ main {
 
 article {
   height: auto;
-  width: 290px;
+  width: 294px;
   overflow-wrap: break-word;
   margin: 3%;
   border: 1px solid;
@@ -87,6 +87,16 @@ img {
 
 p {
   padding: 2% 3%;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cook-icon,
+.favorite-icon {
+  width: 13%;
 }
 
 body {
