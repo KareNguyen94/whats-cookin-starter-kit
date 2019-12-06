@@ -9,16 +9,25 @@ function instantiateRecipes() {
     return recipes;
 };
 
+function insertIngredients(allRecipes) {
+    let ingredientsList = allRecipes.ingredients;
+    for (var i = 0; i < ingredientsList.length; i++) {
+        console.log(ingredientsList[1].name)
+        return `${ingredientsList[i].name}, ${ingredientsList[i].id}, ${ingredientsList[i].quanitity}, ${ingredientsList[i].amount}, ${ingredientsList[i].unit}`
+    }
+}
+
 function displayRecipeCards() {
     instantiateRecipes();
     allRecipes = instantiateRecipes();
+    // insertIngredients(allRecipes);
     for (let i = 0; i < allRecipes.length; i++) {
         recipeCardSection.insertAdjacentHTML('beforeend',
     `<article>
       <img class="food-image" src="${allRecipes[i].image}" alt="food">
       <p class="recipe-name">${allRecipes[i].name}</p>
       <div class="recipe-list">
-        <ul class="recipe-ingredients-list>${allRecipes[i].ingredients}</ul>
+        <ul class="recipe-ingredients-list>${insertIngredients(allRecipes[i])}</ul>
         <ol class="recipe-instructions-list>${allRecipes[i].instructions}</ol>
       </div>
       <div class="card-footer">
