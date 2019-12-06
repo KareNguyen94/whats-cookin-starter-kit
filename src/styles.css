@@ -81,7 +81,9 @@ article {
   border-radius: 3px;
 }
 
-img {
+.food-image {
+  width: 291px;
+  height: 290px;
   border-bottom: 1px solid;
 }
 
@@ -96,7 +98,7 @@ img {
   overflow: scroll;
 }
 
-footer {
+.card-footer {
   display: flex;
   justify-content: space-between;
 }
