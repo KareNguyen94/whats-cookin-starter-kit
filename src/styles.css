@@ -89,6 +89,7 @@ article {
 .food-image {
   width: 291px;
   height: 290px;
+  object-fit: cover;
   border-bottom: 1px solid;
 }
 
