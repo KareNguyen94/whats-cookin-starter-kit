@@ -15,11 +15,11 @@ function insertInstructions(steps) {
     return instructionList.join('\n');
 }
 
-// function insertIngredients(recipes) {
-//     console.log(recipes)
-//     let ingredientrecipes.map()
-//     }
-// }
+function insertIngredients(steps) {
+    const instructionList = steps.map(step => `<li>${step.number}- ${step.instruction}</li>`);
+    console.log(instructionList)
+    return instructionList.join('\n');
+}
 
 function displayRecipeCards() {
     instantiateRecipes();
@@ -30,10 +30,9 @@ function displayRecipeCards() {
       <img class="food-image" src="${allRecipes[i].image}" alt="food">
       <p class="recipe-name">${allRecipes[i].name}</p>
       <div class="recipe-list">
+      <h4>Ingredients</h4>
       <h4>Instructions</h4>
-      <ol>
-      ${insertInstructions(allRecipes[i].instructions)}
-      </ol>
+      <ol>${insertInstructions(allRecipes[i].instructions)}</ol>
       </div>
       <div class="card-footer">
         <img class="cook-icon" src="https://cdn3.iconfinder.com/data/icons/rounded-white-housekeeping/139/Cooking-RoundedWhite-512.png" alt=“Cook icon”>
