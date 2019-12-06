@@ -2,6 +2,10 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  font-family: "Abel", sans-serif;
+  font-family: "Pacifico", "cursive";
+  font-family: "Nanum Gothic", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   /* border: 1px solid red; */
 }
 
@@ -19,6 +23,7 @@ h1 {
   text-align: center;
   background-color: lightblue;
   padding-top: 15px;
+  font-family: "Pacifico", "cursive";
 }
 
 .user-input {
