@@ -12,7 +12,7 @@ function instantiateRecipes() {
 function insertInstructions(steps) {
     const instructionList = steps.map(step => `<li>${step.number}- ${step.instruction}</li>`);
     console.log(instructionList)
-    return instructionList;
+    return instructionList.join('\n');
 }
 
 // function insertIngredients(recipes) {
