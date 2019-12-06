@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 header {
@@ -65,7 +65,7 @@ h1 {
 }
 
 main {
-  padding: 2%;
+  padding: 1.5%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -85,8 +85,15 @@ img {
   border-bottom: 1px solid;
 }
 
-p {
+.recipe-name {
   padding: 2% 3%;
+}
+
+.recipe-list {
+  height: 100px;
+  width: 292px;
+  border: 4px double lightblue;
+  overflow: scroll;
 }
 
 footer {
@@ -104,7 +111,8 @@ body {
   background-repeat: repeat;
   background: linear-gradient( rgba(255, 255, 255, .7), rgba(255, 255, 255, 0.7)), url("https://png.pngtree.com/png-vector/20190318/ourlarge/pngtree-food-doodle-seamless-pattern-png-image_858332.jpg");
   background-size: 300px;
-  border: 1px solid;
+  border-top: 1px solid;
+  height: auto;
 }
 
 button {
