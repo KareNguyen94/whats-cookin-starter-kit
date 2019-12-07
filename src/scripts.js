@@ -4,6 +4,8 @@ let user;
 let pantry;
 let cardId;
 let selectedCard;
+let numberrrr;
+
 
 window.onload = displayRecipeCards();
 
@@ -12,6 +14,9 @@ recipeCardSection.addEventListener("click", handleCardClick);
 function handleCardClick() {
   let cardId = event.target.parentNode.parentNode.id;
   onFavoriteButtonClick(cardId)
+
+function getRandomInt(min, max) {
+    numberrrr = Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function instantiateRecipes() {
@@ -54,6 +59,8 @@ function onFavoriteButtonClick(cardId) {
 function displayRecipeCards() {
     instantiateRecipes();
     allRecipes = instantiateRecipes();
+    getRandomInt(1, 49);
+    console.log(numberrrr);
     for (let i = 0; i < allRecipes.length; i++) {
         recipeCardSection.insertAdjacentHTML('beforeend',
     `<article class="card" id=${allRecipes[i].id}>
@@ -72,6 +79,6 @@ function displayRecipeCards() {
     </article>`
     )
   }
-  instantiateUser()
+  instantiateUser();
   instantiatePantry();
 };
