@@ -1,12 +1,23 @@
 var recipeCardSection = document.querySelector('.recipe-card-section');
+let recipes = [];
+
+window.onload = displayRecipeCards();
+recipeCardSection.addEventListener("click", handleCardClick);
+
+function handleCardClick() {
+  let isCard = event.target.parentNode.parentNode.id;
+}
+
+function instantiateUsers() {
+  
+}
 
 function instantiateRecipes() {
-    let recipes = [];
-    for (let i = 0; i < recipeData.length; i++) {
-        let recipe = new Recipe(recipeData[i])
-        recipes.push(recipe)
-    }
-    return recipes;
+  for (let i = 0; i < recipeData.length; i++) {
+      let recipe = new Recipe(recipeData[i])
+      recipes.push(recipe)
+  }
+  return recipes;
 };
 
 function insertInstructions(steps) {
@@ -18,19 +29,22 @@ function insertIngredients(items) {
     const ingredientList = items.map(item => `<li>-${item.quantity.amount} ${item.quantity.unit} ${item.name}</li>`);
     return ingredientList.join('\n');
 }
+// target class, then id varvar selected.array[i]
+// user.favorite includes selectedcheck if false
+// call one facorite
+// return
 
-function onCardClick(event) {
-  var recipeCard = event.target.parentNode.parentNode;
-  recipes.forEach(selectedRecipe => {
-    if(recipes[i].id === id) {
-      addToFavorite(recipes[i])
-    }
-  })
+function onFavoriteClick(event) {
+recipes.find(recipe => {
+  return recipe.id === event.target.id
+})
+  if (event.target.id("favorite-button")) {
 
+  }
 }
 
-function addToFavorite(recipes) {
-  recipes.addFavoriteRecipe(recipe);
+function addToFavorite(user, recipe) {
+  user.addFavoriteRecipe(recipe);
 }
 
 function displayRecipeCards() {
@@ -38,7 +52,7 @@ function displayRecipeCards() {
     allRecipes = instantiateRecipes();
     for (let i = 0; i < allRecipes.length; i++) {
         recipeCardSection.insertAdjacentHTML('beforeend',
-    `<article>
+    `<article class="card" id=${allRecipes[i].id}>
       <img class="food-image" src="${allRecipes[i].image}" alt="food">
       <p class="recipe-name">${allRecipes[i].name}</p>
       <div class="recipe-list">
@@ -55,5 +69,3 @@ function displayRecipeCards() {
     )
   }
 };
-
-window.onload = displayRecipeCards();
