@@ -2,63 +2,53 @@ var recipeCardSection = document.querySelector('.recipe-card-section');
 let recipes = [];
 let user;
 let pantry;
-let isCardID;
+let cardId;
 let selectedCard;
 
 window.onload = displayRecipeCards();
+
 recipeCardSection.addEventListener("click", handleCardClick);
 
 function handleCardClick() {
-  let isCardID = event.target.parentNode.parentNode.id;
-  onFavoriteClick(isCardID)
-}
-
-function instantiateUsers() {
-
+  let cardId = event.target.parentNode.parentNode.id;
+  onFavoriteButtonClick(cardId)
 }
 
 function instantiateRecipes() {
   for (let i = 0; i < recipeData.length; i++) {
-      let recipe = new Recipe(recipeData[i])
-      recipes.push(recipe)
+    let recipe = new Recipe(recipeData[i])
+    recipes.push(recipe)
   }
   return recipes;
 };
 
 function instantiateUser() {
-        let user = new User(usersData[0]);
+  user = new User(usersData[0]);
     return user;
 };
 
 function instantiatePantry() {
-        let pantry = new Pantry(usersData[0]);
+  pantry = new Pantry(usersData[0]);
     return pantry;
 };
 
 function insertInstructions(steps) {
-    const instructionList = steps.map(step => `<li>${step.number}. ${step.instruction}</li>`);
-    return instructionList.join('\n');
+  const instructionList = steps.map(step => `<li>${step.number}. ${step.instruction}</li>`);
+  return instructionList.join('\n');
 }
 
 function insertIngredients(items) {
-    const ingredientList = items.map(item => `<li>-${item.quantity.amount} ${item.quantity.unit} ${item.name}</li>`);
-    return ingredientList.join('\n');
+  const ingredientList = items.map(item => `<li>-${item.quantity.amount} ${item.quantity.unit} ${item.name}</li>`);
+  return ingredientList.join('\n');
 }
-// target class, then id varvar selected.array[i]
-// user.favorite includes selectedcheck if false
-// call one facorite
-// return
 
-function onFavoriteClick(isCardID) {
-  return recipes.find(recipe => {
-    if (recipe.id === isCardID) {
+function onFavoriteButtonClick(cardId) {
+  selectedCard = recipes.find(recipe => {
+    if (recipe.id === parseInt(cardId)) {
       return recipe;
     }
   })
-}
-
-function addToFavorite(user, recipe) {
-  user.addFavoriteRecipe(recipe);
+  user.addFavoriteRecipe(selectedCard);
 }
 
 function displayRecipeCards() {
@@ -82,6 +72,6 @@ function displayRecipeCards() {
     </article>`
     )
   }
-  instantiateUser();
+  instantiateUser()
   instantiatePantry();
 };
