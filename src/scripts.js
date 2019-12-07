@@ -2,16 +2,19 @@ var recipeCardSection = document.querySelector('.recipe-card-section');
 let recipes = [];
 let user;
 let pantry;
+let isCardID;
+let selectedCard;
 
 window.onload = displayRecipeCards();
 recipeCardSection.addEventListener("click", handleCardClick);
 
 function handleCardClick() {
-  let isCard = event.target.parentNode.parentNode.id;
+  let isCardID = event.target.parentNode.parentNode.id;
+  onFavoriteClick(isCardID)
 }
 
 function instantiateUsers() {
-  
+
 }
 
 function instantiateRecipes() {
@@ -46,13 +49,12 @@ function insertIngredients(items) {
 // call one facorite
 // return
 
-function onFavoriteClick(event) {
-recipes.find(recipe => {
-  return recipe.id === event.target.id
-})
-  if (event.target.id("favorite-button")) {
-
-  }
+function onFavoriteClick(isCardID) {
+  return recipes.find(recipe => {
+    if (recipe.id === isCardID) {
+      return recipe;
+    }
+  })
 }
 
 function addToFavorite(user, recipe) {
