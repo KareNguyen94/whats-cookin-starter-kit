@@ -2,16 +2,25 @@ var recipeCardSection = document.querySelector('.recipe-card-section');
 let recipes = [];
 let user;
 let pantry;
+let numberrrr;
+
+window.onpopstate = function (e) {
+    if (e.state !== null) {
+    } else {
+        location.reload();
+    }
+}
+
 
 window.onload = displayRecipeCards();
 recipeCardSection.addEventListener("click", handleCardClick);
 
-function handleCardClick() {
-  let isCard = event.target.parentNode.parentNode.id;
+function getRandomInt(min, max) {
+    numberrrr = Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function instantiateUsers() {
-  
+function handleCardClick() {
+  let isCard = event.target.parentNode.parentNode.id;
 }
 
 function instantiateRecipes() {
@@ -23,12 +32,12 @@ function instantiateRecipes() {
 };
 
 function instantiateUser() {
-        let user = new User(usersData[0]);
+        user = new User(usersData[0]);
     return user;
 };
 
 function instantiatePantry() {
-        let pantry = new Pantry(usersData[0]);
+        pantry = new Pantry(usersData[0]);
     return pantry;
 };
 
@@ -62,6 +71,8 @@ function addToFavorite(user, recipe) {
 function displayRecipeCards() {
     instantiateRecipes();
     allRecipes = instantiateRecipes();
+    getRandomInt(1, 49);
+    console.log(numberrrr);
     for (let i = 0; i < allRecipes.length; i++) {
         recipeCardSection.insertAdjacentHTML('beforeend',
     `<article class="card" id=${allRecipes[i].id}>
@@ -81,5 +92,7 @@ function displayRecipeCards() {
     )
   }
   instantiateUser();
+  console.log(user)
   instantiatePantry();
+  console.log(pantry)
 };
