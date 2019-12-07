@@ -1,5 +1,7 @@
 var recipeCardSection = document.querySelector('.recipe-card-section');
 let recipes = [];
+let user;
+let pantry;
 
 window.onload = displayRecipeCards();
 recipeCardSection.addEventListener("click", handleCardClick);
@@ -18,6 +20,16 @@ function instantiateRecipes() {
       recipes.push(recipe)
   }
   return recipes;
+};
+
+function instantiateUser() {
+        let user = new User(usersData[0]);
+    return user;
+};
+
+function instantiatePantry() {
+        let pantry = new Pantry(usersData[0]);
+    return pantry;
 };
 
 function insertInstructions(steps) {
@@ -68,4 +80,6 @@ function displayRecipeCards() {
     </article>`
     )
   }
+  instantiateUser();
+  instantiatePantry();
 };
