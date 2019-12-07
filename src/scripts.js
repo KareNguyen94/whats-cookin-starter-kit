@@ -14,6 +14,7 @@ recipeCardSection.addEventListener("click", handleCardClick);
 function handleCardClick() {
   let cardId = event.target.parentNode.parentNode.id;
   onFavoriteButtonClick(cardId)
+}
 
 function getRandomInt(min, max) {
     numberrrr = Math.floor(Math.random() * (max - min + 1)) + min;
