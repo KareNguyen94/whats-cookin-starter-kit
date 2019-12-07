@@ -111,8 +111,16 @@ article {
 
 .cook-button,
 .favorite-button {
-  width: 13%;
-  padding-top: 2%;
+  width: 30%;
+  padding-top: 1%;
+}
+
+.cook-button {
+  background-image: ("https://cdn3.iconfinder.com/data/icons/rounded-white-housekeeping/139/Cooking-RoundedWhite-512.png");
+}
+
+.favorite-button {
+  background-image: ("https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/heart-outline-512.png");
 }
 
 body {

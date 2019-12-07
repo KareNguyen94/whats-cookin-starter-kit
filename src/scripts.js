@@ -76,8 +76,8 @@ function displayRecipeCards() {
         <ol>${insertInstructions(allRecipes[i].instructions)}</ol>
       </div>
       <div class="card-footer">
-        <button><img class="cook-button" src="https://cdn3.iconfinder.com/data/icons/rounded-white-housekeeping/139/Cooking-RoundedWhite-512.png" alt=“Cook icon”></button>
-        <button><img class="favorite-button" src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/heart-outline-512.png" alt=“Favorite icon”></button>
+        <button class="cook-button"><img class="cook-button" src="https://cdn3.iconfinder.com/data/icons/rounded-white-housekeeping/139/Cooking-RoundedWhite-512.png" alt=“Cook icon”></button>
+        <button class="favorite-button"><img class="favorite-button" src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/heart-outline-512.png" alt=“Favorite icon”></button>
       </div>
     </article>`
     )
