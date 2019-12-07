@@ -2,70 +2,58 @@ var recipeCardSection = document.querySelector('.recipe-card-section');
 let recipes = [];
 let user;
 let pantry;
+let cardId;
+let selectedCard;
 let numberrrr;
-
-window.onpopstate = function (e) {
-    if (e.state !== null) {
-    } else {
-        location.reload();
-    }
-}
 
 
 window.onload = displayRecipeCards();
+
 recipeCardSection.addEventListener("click", handleCardClick);
+
+function handleCardClick() {
+  let cardId = event.target.parentNode.parentNode.id;
+  onFavoriteButtonClick(cardId)
 
 function getRandomInt(min, max) {
     numberrrr = Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function handleCardClick() {
-  let isCard = event.target.parentNode.parentNode.id;
-}
-
 function instantiateRecipes() {
   for (let i = 0; i < recipeData.length; i++) {
-      let recipe = new Recipe(recipeData[i])
-      recipes.push(recipe)
+    let recipe = new Recipe(recipeData[i])
+    recipes.push(recipe)
   }
   return recipes;
 };
 
 function instantiateUser() {
-        user = new User(usersData[0]);
+  user = new User(usersData[0]);
     return user;
 };
 
 function instantiatePantry() {
-        pantry = new Pantry(usersData[0]);
+  pantry = new Pantry(usersData[0]);
     return pantry;
 };
 
 function insertInstructions(steps) {
-    const instructionList = steps.map(step => `<li>${step.number}. ${step.instruction}</li>`);
-    return instructionList.join('\n');
+  const instructionList = steps.map(step => `<li>${step.number}. ${step.instruction}</li>`);
+  return instructionList.join('\n');
 }
 
 function insertIngredients(items) {
-    const ingredientList = items.map(item => `<li>-${item.quantity.amount} ${item.quantity.unit} ${item.name}</li>`);
-    return ingredientList.join('\n');
-}
-// target class, then id varvar selected.array[i]
-// user.favorite includes selectedcheck if false
-// call one facorite
-// return
-
-function onFavoriteClick(event) {
-recipes.find(recipe => {
-  return recipe.id === event.target.id
-})
-  if (event.target.id("favorite-button")) {
-
-  }
+  const ingredientList = items.map(item => `<li>-${item.quantity.amount} ${item.quantity.unit} ${item.name}</li>`);
+  return ingredientList.join('\n');
 }
 
-function addToFavorite(user, recipe) {
-  user.addFavoriteRecipe(recipe);
+function onFavoriteButtonClick(cardId) {
+  selectedCard = recipes.find(recipe => {
+    if (recipe.id === parseInt(cardId)) {
+      return recipe;
+    }
+  })
+  user.addFavoriteRecipe(selectedCard);
 }
 
 function displayRecipeCards() {
@@ -85,14 +73,12 @@ function displayRecipeCards() {
         <ol>${insertInstructions(allRecipes[i].instructions)}</ol>
       </div>
       <div class="card-footer">
-        <button><img class="cook-button" src="https://cdn3.iconfinder.com/data/icons/rounded-white-housekeeping/139/Cooking-RoundedWhite-512.png" alt=“Cook icon”></button>
-        <button><img class="favorite-button" src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/heart-outline-512.png" alt=“Favorite icon”></button>
+        <button class="cook-button"></button>
+        <button class="favorite-button"></button>
       </div>
     </article>`
     )
   }
   instantiateUser();
-  console.log(user)
   instantiatePantry();
-  console.log(pantry)
 };
