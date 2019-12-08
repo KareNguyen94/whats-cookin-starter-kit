@@ -21,7 +21,6 @@ describe('recipes', function () {
   });
 
   it('should be an instance of User', function () {
-    // console.log(user);
     expect(user).to.be.an.instanceof(User);
   });
 
@@ -36,19 +35,42 @@ describe('recipes', function () {
   it('should be able to favorite a recipe', function() {
     let recipe = new Recipe(recipeData[0]);
 
-    user.addFavoriteRecipe(recipe);
+    user.evaluateFavoriteValue(recipe);
     
     expect(user.favoriteRecipes.length).to.deep.equal(1);
   });
 
-  it.('should be able to remove an unfavorited recipe', function () {
+  it('should be able to unfavorite a recipe', function () {
     let recipe = new Recipe(recipeData[0])
     let recipe1 = new Recipe(recipeData[1])
 
-    user.addFavoriteRecipe(recipe);
-    user.addFavoriteRecipe(recipe1);
-    user.removeFavoriteRecipe(recipe1);
+    user.evaluateFavoriteValue(recipe);
+    user.evaluateFavoriteValue(recipe1);
+    user.evaluateFavoriteValue(recipe1);
 
     expect(user.favoriteRecipes.length).to.deep.equal(1);
+    expect(recipe.favorite).to.equal(true);
+    expect(recipe1.favorite).to.equal(false);
+  });
+
+  it('should be able to add a recipe to the to-cook section', function () {
+    let recipe = new Recipe(recipeData[0]);
+
+    user.evaluateToCookValue(recipe);
+
+    expect(user.recipesToCook.length).to.deep.equal(1);
+  });
+
+  it('should be able to remove a recipe from the to-cook section', function () {
+    let recipe = new Recipe(recipeData[0])
+    let recipe1 = new Recipe(recipeData[1])
+
+    user.evaluateToCookValue(recipe);
+    user.evaluateToCookValue(recipe1);
+    user.evaluateToCookValue(recipe1);
+
+    expect(user.recipesToCook.length).to.deep.equal(1);
+    expect(recipe.toCook).to.equal(true);
+    expect(recipe1.toCook).to.equal(false);
   });
 });
