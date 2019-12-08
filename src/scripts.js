@@ -164,7 +164,6 @@ function onCookButtonClick(cardId) {
 
 
 function displayRecipeCards() {
-    instantiateRecipes();
     allRecipes = instantiateRecipes();
     getRandomInt(1, 48);
     for (let i = 0; i < allRecipes.length; i++) {

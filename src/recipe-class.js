@@ -6,7 +6,19 @@ class Recipe {
     this.ingredients = recipe.ingredients;
     this.instructions = recipe.instructions;
     this.tags = recipe.tags;
+    this.favorite = false;
+    this.toCook = false;
   }
+
+  toggleToCook(recipe) {
+    this.toCook = !this.toCook;
+  }
+
+
+  toggleFavoriteRecipe(recipe) {
+    this.favorite = !this.favorite;
+  }
+
 
   showSteps() {
 
