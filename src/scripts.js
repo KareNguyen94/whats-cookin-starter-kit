@@ -12,9 +12,28 @@ window.onload = displayRecipeCards();
 recipeCardSection.addEventListener("click", handleCardClick);
 
 function handleCardClick() {
-  let cardId = event.target.parentNode.parentNode.id;
-  onFavoriteButtonClick(cardId)
+  if (event.target.classList.contains('favorite-button')) {
+    favoriteClick();
+  } if (event.target.classList.contains('cook-button')) {
+    cookClick();
+  }
 }
+
+function favoriteClick() {
+  let cardId = event.target.parentNode.parentNode.id;
+  if (cardId !== "") {
+  onFavoriteButtonClick(cardId)
+  }
+}
+
+function cookClick() {
+  let cardId = event.target.parentNode.parentNode.id;
+  if (cardId !== "") {
+  onCookButtonClick(cardId)
+  } 
+}
+
+
 
 function getRandomInt(min, max) {
     numberrrr = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -55,6 +74,15 @@ function onFavoriteButtonClick(cardId) {
     }
   })
   user.addFavoriteRecipe(selectedCard);
+}
+
+function onCookButtonClick(cardId) {
+  selectedCard = recipes.find(recipe => {
+    if (recipe.id === parseInt(cardId)) {
+      return recipe;
+    }
+  })
+  user.addToCook(selectedCard);
 }
 
 function displayRecipeCards() {
