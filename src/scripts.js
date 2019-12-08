@@ -149,7 +149,7 @@ function onFavoriteButtonClick(cardId) {
       return recipe;
     }
   })
-  user.addFavoriteRecipe(selectedCard);
+    user.evaluateFavoriteValue(selectedCard);
 }
 
 function onCookButtonClick(cardId) {
@@ -158,10 +158,8 @@ function onCookButtonClick(cardId) {
       return recipe;
     }
   })
-  user.addToCook(selectedCard);
+    user.evaluateToCookValue(selectedCard);
 }
-
-
 
 function displayRecipeCards() {
     allRecipes = instantiateRecipes();

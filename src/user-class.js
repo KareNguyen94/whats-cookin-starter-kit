@@ -6,8 +6,25 @@ class User {
     this.recipesToCook = [];
   }
 
+  evaluateToCookValue(recipe) {
+    if (recipe.toCook) {
+      this.removeToCook(recipe);
+    } else {
+      this.addToCook(recipe);
+    }
+  }
+
+  evaluateFavoriteValue(recipe) {
+    if (recipe.favorite) {
+      this.removeFavoriteRecipe(recipe);
+    } else {
+      this.addFavoriteRecipe(recipe);
+    }
+  }
+
   addToCook(recipe) {
     this.recipesToCook.push(recipe);
+  recipe.toggleToCook(recipe);
   }
 
   removeToCook(recipe) {
@@ -15,10 +32,12 @@ class User {
     if (index !== -1) {
       this.recipesToCook.splice(index, 1);
     }
+  recipe.toggleToCook(recipe);
   }
 
   addFavoriteRecipe(recipe) {
     this.favoriteRecipes.push(recipe);
+    recipe.toggleFavoriteRecipe(recipe);
   }
 
   removeFavoriteRecipe(recipe) {
@@ -26,6 +45,7 @@ class User {
     if (index !== -1) {
       this.favoriteRecipes.splice(index, 1);
     }
+    recipe.toggleFavoriteRecipe(recipe);
   }
 
   toFilterRecipes() {
