@@ -6,6 +6,10 @@ class User {
     this.recipesToCook = [];
   }
 
+  addToCook(recipe) {
+    this.recipesToCook.push(recipe);
+  }
+
   addFavoriteRecipe(recipe) {
     this.favoriteRecipes.push(recipe);
   }
