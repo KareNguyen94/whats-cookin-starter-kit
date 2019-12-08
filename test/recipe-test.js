@@ -17,7 +17,6 @@ describe('recipes', function() {
   });
 
   it('should be an instance of Recipe', function() {
-    // console.log(recipe);
     expect(recipe).to.be.an.instanceof(Recipe);
   });
 
@@ -41,12 +40,25 @@ describe('recipes', function() {
     expect(recipe.tags).to.deep.equal(recipeData[0].tags);
   });
 
-  it('should start out not favorited', function() {
+  it('should have a default favorite value of false', function() {
     expect(recipe.favorite).to.equal(false);
   });
 
-  it.only('should let you favorite', function() {
-    recipe.toggleFavorite(recipe);
+  it('should have the favorite value be true once favorited', function () {
+
+    recipe.toggleFavoriteRecipe(recipe);
+
     expect(recipe.favorite).to.equal(true);
+  });
+
+  it('should have a default toCook value of false', function () {
+    expect(recipe.toCook).to.equal(false);
+  });
+
+  it('should have the toCook value be true once favorited', function () {
+
+    recipe.toggleToCook(recipe);
+
+    expect(recipe.toCook).to.equal(true);
   });
 });

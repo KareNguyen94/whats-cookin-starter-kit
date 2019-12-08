@@ -17,7 +17,6 @@ describe('ingredients', function () {
   });
 
   it('should be an instance of Pantry', function () {
-    // console.log(pantry);
     expect(pantry).to.be.an.instanceof(Pantry);
   });
 
