@@ -36,7 +36,7 @@ function cookClick() {
 
 
 function getRandomInt(min, max) {
-    numberrrr = Math.floor(Math.random() * (max - min + 1)) + min;
+    numberrrr = Math.floor(Math.random() * (max - min + 1)) - 1;
 }
 
 function instantiateRecipes() {
@@ -48,7 +48,7 @@ function instantiateRecipes() {
 };
 
 function instantiateUser() {
-  user = new User(usersData[0]);
+    user = new User(usersData[numberrrr]);
     return user;
 };
 
