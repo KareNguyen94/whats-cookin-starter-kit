@@ -10,6 +10,13 @@ class User {
     this.recipesToCook.push(recipe);
   }
 
+  removeToCook(recipe) {
+    const index = this.recipesToCook.indexOf(recipe)
+    if (index !== -1) {
+      this.recipesToCook.splice(index, 1);
+    }
+  }
+
   addFavoriteRecipe(recipe) {
     this.favoriteRecipes.push(recipe);
   }
