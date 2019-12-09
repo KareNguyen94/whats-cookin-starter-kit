@@ -109,22 +109,35 @@ article {
   justify-content: space-between;
 }
 
+.active-favorite-button,
+.active-to-cook-button ,
 .cook-button,
 .favorite-button {
   width: 10%;
   height: 30px;
   background-repeat: no-repeat;
   background-size: contain;
+  border: none;
+  margin: 1.5%;
 }
 
+
 .cook-button {
-  background-image: url("https://cdn3.iconfinder.com/data/icons/rounded-white-housekeeping/139/Cooking-RoundedWhite-512.png");
+  background-image: url("../assets/icons8-cooker-50.png");
 
 }
 
 .favorite-button {
-  background-image: url("https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/heart-outline-512.png");
+  background-image: url("../assets/icons8-heart-50.png");
 
+}
+
+.active-favorite-button {
+  background-image: url("../assets/icons8-heart-50-2.png");
+}
+
+.active-to-cook-button {
+  background-image: url("../assets/icons8-cooker-50-2.png");
 }
 
 body {

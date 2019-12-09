@@ -90,8 +90,10 @@ function displayToCookCards() {
 function handleCardClick() {
   if (event.target.classList.contains('favorite-button')) {
     favoriteClick();
+    toggleFavoriteButton();
   } if (event.target.classList.contains('cook-button')) {
     cookClick();
+    toggleToCookButton();
   }
 }
 
@@ -106,7 +108,7 @@ function cookClick() {
   let cardId = event.target.parentNode.parentNode.id;
   if (cardId !== "") {
   onCookButtonClick(cardId)
-  } 
+  }
 }
 
 
@@ -159,6 +161,24 @@ function onCookButtonClick(cardId) {
     }
   })
     user.evaluateToCookValue(selectedCard);
+}
+
+function toggleToCookButton() {
+  let toCookButton = document.querySelector(".cook-button");
+  if (selectedCard.toCook === true) {
+    toCookButton.classList.add("active-to-cook-button");
+  } else {
+    toCookButton.classList.remove("active-to-cook-button");
+  }
+}
+
+function toggleFavoriteButton() {
+  let favoriteButton = document.querySelector(".favorite-button");
+  if (selectedCard.favorite === true) {
+    favoriteButton.classList.add("active-favorite-button");
+  } else {
+    favoriteButton.classList.remove("active-favorite-button");
+  }
 }
 
 function displayRecipeCards() {
