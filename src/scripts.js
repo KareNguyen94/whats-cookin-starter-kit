@@ -90,6 +90,7 @@ function displayToCookCards() {
 function handleCardClick() {
   if (event.target.classList.contains('favorite-button')) {
     favoriteClick();
+    toggleFavoriteButton();
   } if (event.target.classList.contains('cook-button')) {
     cookClick();
     toggleToCookButton();
@@ -168,6 +169,15 @@ function toggleToCookButton() {
     toCookButton.classList.add("active-to-cook-button");
   } else {
     toCookButton.classList.remove("active-to-cook-button");
+  }
+}
+
+function toggleFavoriteButton() {
+  let favoriteButton = document.querySelector(".favorite-button");
+  if (selectedCard.favorite === true) {
+    favoriteButton.classList.add("active-favorite-button");
+  } else {
+    favoriteButton.classList.remove("active-favorite-button");
   }
 }
 
