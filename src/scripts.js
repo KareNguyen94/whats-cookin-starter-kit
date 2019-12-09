@@ -6,7 +6,7 @@ let pantry;
 let cardId;
 let selectedCard;
 let randomNumber;
-
+let searchButton = document.querySelector(".search-button")
 
 window.onload = displayRecipeCards();
 
@@ -27,9 +27,9 @@ function displayHomeCards() {
     recipeCardSection.innerHTML = '';
     for (let i = 0; i < allRecipes.length; i++) {
         recipeCardSection.insertAdjacentHTML('beforeend',
-            `<article class="card" id=${allRecipes[i].id}>
-      <img class="food-image" src="${allRecipes[i].image}" alt="food">
+       `<article class="card" id=${allRecipes[i].id}>
       <p class="recipe-name">${allRecipes[i].name}</p>
+      <img class="food-image" src="${allRecipes[i].image}" alt="food">
       <div class="recipe-list">
         <h3>Ingredients:</h3>
         <ul>${insertIngredients(allRecipes[i].ingredients)}</ul></br>
@@ -49,9 +49,9 @@ function displayFavoriteCards() {
     recipeCardSection.innerHTML = '';
     for (let i = 0; i < user.favoriteRecipes.length; i++) {
         recipeCardSection.insertAdjacentHTML('beforeend',
-            `<article class="card" id=${user.favoriteRecipes[i].id}>
-      <img class="food-image" src="${user.favoriteRecipes[i].image}" alt="food">
+        `<article class="card" id=${user.favoriteRecipes[i].id}>
       <p class="recipe-name">${user.favoriteRecipes[i].name}</p>
+      <img class="food-image" src="${user.favoriteRecipes[i].image}" alt="food">
       <div class="recipe-list">
         <h3>Ingredients:</h3>
         <ul>${insertIngredients(user.favoriteRecipes[i].ingredients)}</ul></br>
@@ -70,9 +70,9 @@ function displayToCookCards() {
     recipeCardSection.innerHTML = '';
     for (let i = 0; i < user.recipesToCook.length; i++) {
         recipeCardSection.insertAdjacentHTML('beforeend',
-            `<article class="card" id=${user.recipesToCook[i].id}>
-      <img class="food-image" src="${user.recipesToCook[i].image}" alt="food">
+      `<article class="card" id=${user.recipesToCook[i].id}>
       <p class="recipe-name">${user.recipesToCook[i].name}</p>
+      <img class="food-image" src="${user.recipesToCook[i].image}" alt="food">
       <div class="recipe-list">
         <h3>Ingredients:</h3>
         <ul>${insertIngredients(user.recipesToCook[i].ingredients)}</ul></br>
@@ -186,9 +186,9 @@ function displayRecipeCards() {
     getRandomInt(1, 48);
     for (let i = 0; i < allRecipes.length; i++) {
         recipeCardSection.insertAdjacentHTML('beforeend',
-    `<article class="card" id=${allRecipes[i].id}>
-      <img class="food-image" src="${allRecipes[i].image}" alt="food">
+      `<article class="card" id=${allRecipes[i].id}>
       <p class="recipe-name">${allRecipes[i].name}</p>
+      <img class="food-image" src="${allRecipes[i].image}" alt="${allRecipes[i].name}">
       <div class="recipe-list">
         <h3>Ingredients:</h3>
         <ul>${insertIngredients(allRecipes[i].ingredients)}</ul></br>
