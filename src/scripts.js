@@ -6,10 +6,13 @@ let pantry;
 let cardId;
 let selectedCard;
 let randomNumber;
-let searchButton = document.querySelector(".search-button")
+let searchButton = document.querySelector(".search-button");
+let searchInput = document.querySelector('.search-input');
+let returnedAfterSearch;
 
 window.onload = displayRecipeCards();
 
+searchButton.addEventListener('click', search);
 recipeCardSection.addEventListener("click", handleCardClick);
 headerSection.addEventListener("click", handleHeaderClick);
 
@@ -229,3 +232,44 @@ function displayRecipeCards() {
   instantiateUser();
   instantiatePantry();
 };
+
+
+function search() {
+    var searchValue = searchInput.value.toLowerCase();
+    recipeCardSection.innerHTML = "";
+    let returnedAfterSearch = allRecipes.filter(recipe => {
+        var ingredientSearch = recipe.ingredients.filter(ingredient => {
+            return ingredient.name.toLowerCase().includes(searchValue);
+        })
+        return (recipe.name.toLowerCase().includes(searchValue) || recipe.tags.includes(searchValue) || ingredientSearch.length > 0 
+        );
+    })
+    console.log('11111111', returnedAfterSearch)
+    createSearchedRecipeCard(returnedAfterSearch);
+}
+
+
+
+function createSearchedRecipeCard(recipe) {
+    console.log('22222', recipe)
+    recipe.forEach(singleRecipe => {
+    let favoriteValue = verifyFavoriteValue(singleRecipe);
+    let toCookValue = verifyToCookValue(singleRecipe);
+    recipeCardSection.insertAdjacentHTML('beforeend',
+        `<article class="card" id=${singleRecipe.id}>
+      <p class="recipe-name">${singleRecipe.name}</p>
+      <img class="food-image" src="${singleRecipe.image}" alt="${singleRecipe.name}">
+      <div class="recipe-list">
+        <h3>Ingredients:</h3>
+        <ul>${insertIngredients(singleRecipe.ingredients)}</ul></br>
+        <h3>Instructions:</h3>
+        <ol>${insertInstructions(singleRecipe.instructions)}</ol>
+      </div>
+      <div class="card-footer">
+        <img class="${toCookValue} this-cook-button"/>
+        <img class="${favoriteValue} this-favorite-button"/>
+      </div>
+    </article>`
+    )
+    })
+}
