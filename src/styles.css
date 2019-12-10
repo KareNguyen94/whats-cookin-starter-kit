@@ -128,6 +128,17 @@ article {
   background-size: contain;
   border: none;
   margin: 2%;
+  cursor: pointer;
+}
+
+.this-cook-button,
+.this-favorite-button {
+    width: 10%;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  margin: 2%;
 }
 
 .cook-button {
