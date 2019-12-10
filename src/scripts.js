@@ -10,10 +10,9 @@ let searchButton = document.querySelector(".search-button");
 let searchInput = document.querySelector('.search-input');
 let returnedAfterSearch;
 
-searchButton.addEventListener('click', search);
-
 window.onload = displayRecipeCards();
 
+searchButton.addEventListener('click', search);
 recipeCardSection.addEventListener("click", handleCardClick);
 headerSection.addEventListener("click", handleHeaderClick);
 
@@ -239,9 +238,11 @@ function search() {
     var searchValue = searchInput.value.toLowerCase();
     recipeCardSection.innerHTML = "";
     let returnedAfterSearch = allRecipes.filter(recipe => {
-        return (recipe.name.toLowerCase().includes(searchValue) || recipe.tags.includes(searchValue) || recipe.ingredients.filter(recipe => {
-            return recipe.ingredients.name.toLowerCase().includes(searchValue);
-        }));
+        var ingredientSearch = recipe.ingredients.filter(ingredient => {
+            return ingredient.name.toLowerCase().includes(searchValue);
+        })
+        return (recipe.name.toLowerCase().includes(searchValue) || recipe.tags.includes(searchValue) || ingredientSearch.length > 0 
+        );
     })
     console.log('11111111', returnedAfterSearch)
     createSearchedRecipeCard(returnedAfterSearch);
