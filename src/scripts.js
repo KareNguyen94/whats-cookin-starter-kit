@@ -26,10 +26,12 @@ function handleHeaderClick() {
 function displayHomeCards() {
     recipeCardSection.innerHTML = '';
     for (let i = 0; i < allRecipes.length; i++) {
+        let favoriteValue = verifyFavoriteValue(allRecipes[i]);
+        let toCookValue = verifyToCookValue(allRecipes[i]);
         recipeCardSection.insertAdjacentHTML('beforeend',
-       `<article class="card" id=${allRecipes[i].id}>
+            `<article class="card" id=${allRecipes[i].id}>
       <p class="recipe-name">${allRecipes[i].name}</p>
-      <img class="food-image" src="${allRecipes[i].image}" alt="food">
+      <img class="food-image" src="${allRecipes[i].image}" alt="${allRecipes[i].name}">
       <div class="recipe-list">
         <h3>Ingredients:</h3>
         <ul>${insertIngredients(allRecipes[i].ingredients)}</ul></br>
@@ -37,21 +39,22 @@ function displayHomeCards() {
         <ol>${insertInstructions(allRecipes[i].instructions)}</ol>
       </div>
       <div class="card-footer">
-        <button class="cook-button"></button>
-        <button class="favorite-button"></button>
+        <img class="${toCookValue} this-cook-button"/>
+        <img class="${favoriteValue} this-favorite-button"/>
       </div>
     </article>`
     )}
 }
 
-
 function displayFavoriteCards() {
     recipeCardSection.innerHTML = '';
     for (let i = 0; i < user.favoriteRecipes.length; i++) {
+        let favoriteValue = verifyFavoriteValue(user.favoriteRecipes[i]);
+        let toCookValue = verifyToCookValue(user.favoriteRecipes[i]);
         recipeCardSection.insertAdjacentHTML('beforeend',
-        `<article class="card" id=${user.favoriteRecipes[i].id}>
+            `<article class="card" id=${user.favoriteRecipes[i].id}>
       <p class="recipe-name">${user.favoriteRecipes[i].name}</p>
-      <img class="food-image" src="${user.favoriteRecipes[i].image}" alt="food">
+      <img class="food-image" src="${user.favoriteRecipes[i].image}" alt="${user.favoriteRecipes[i].name}">
       <div class="recipe-list">
         <h3>Ingredients:</h3>
         <ul>${insertIngredients(user.favoriteRecipes[i].ingredients)}</ul></br>
@@ -59,8 +62,8 @@ function displayFavoriteCards() {
         <ol>${insertInstructions(user.favoriteRecipes[i].instructions)}</ol>
       </div>
       <div class="card-footer">
-        <button class="cook-button"></button>
-        <button class="favorite-button"></button>
+        <img class="${toCookValue} this-cook-button"/>
+        <img class="${favoriteValue} this-favorite-button"/>
       </div>
     </article>`
         )}
@@ -69,10 +72,12 @@ function displayFavoriteCards() {
 function displayToCookCards() {
     recipeCardSection.innerHTML = '';
     for (let i = 0; i < user.recipesToCook.length; i++) {
+        let favoriteValue = verifyFavoriteValue(user.recipesToCook[i]);
+        let toCookValue = verifyToCookValue(user.recipesToCook[i]);
         recipeCardSection.insertAdjacentHTML('beforeend',
-      `<article class="card" id=${user.recipesToCook[i].id}>
+            `<article class="card" id=${user.recipesToCook[i].id}>
       <p class="recipe-name">${user.recipesToCook[i].name}</p>
-      <img class="food-image" src="${user.recipesToCook[i].image}" alt="food">
+      <img class="food-image" src="${user.recipesToCook[i].image}" alt="${user.recipesToCook[i].name}">
       <div class="recipe-list">
         <h3>Ingredients:</h3>
         <ul>${insertIngredients(user.recipesToCook[i].ingredients)}</ul></br>
@@ -80,20 +85,20 @@ function displayToCookCards() {
         <ol>${insertInstructions(user.recipesToCook[i].instructions)}</ol>
       </div>
       <div class="card-footer">
-        <button class="cook-button"></button>
-        <button class="favorite-button"></button>
+        <img class="${toCookValue} this-cook-button"/>
+        <img class="${favoriteValue} this-favorite-button"/>
       </div>
     </article>`
         )}
 }
 
 function handleCardClick() {
-  if (event.target.classList.contains('favorite-button')) {
+  if (event.target.classList.contains('favorite-button') || event.target.classList.contains('active-favorite-button')) {
     favoriteClick();
-    toggleFavoriteButton();
-  } if (event.target.classList.contains('cook-button')) {
+    toggleFavoriteButton(event);
+  } if (event.target.classList.contains('cook-button') || event.target.classList.contains('active-to-cook-button')) {
     cookClick();
-    toggleToCookButton();
+    toggleToCookButton(event);
   }
 }
 
@@ -110,8 +115,6 @@ function cookClick() {
   onCookButtonClick(cardId)
   }
 }
-
-
 
 function getRandomInt(min, max) {
     randomNumber = Math.floor(Math.random() * (max - min + 1)) - 1;
@@ -163,28 +166,49 @@ function onCookButtonClick(cardId) {
     user.evaluateToCookValue(selectedCard);
 }
 
-function toggleToCookButton() {
-  let toCookButton = document.querySelector(".cook-button");
-  if (selectedCard.toCook === true) {
-    toCookButton.classList.add("active-to-cook-button");
-  } else {
-    toCookButton.classList.remove("active-to-cook-button");
-  }
+function toggleToCookButton(event) {
+    let toCookButton = event.target.closest('.this-cook-button');
+    if (selectedCard.toCook) {
+        toCookButton.classList.toggle('active-to-cook-button');
+        toCookButton.classList.toggle('cook-button');
+    } else {
+        toCookButton.classList.toggle('active-to-cook-button');
+        toCookButton.classList.toggle('cook-button');
+    }
+}
+function toggleFavoriteButton(event) {
+    let favoriteButton = event.target.closest('.this-favorite-button');
+    if (selectedCard.favorite) {
+        favoriteButton.classList.toggle('active-favorite-button');
+        favoriteButton.classList.toggle('favorite-button');
+    } else {
+        favoriteButton.classList.toggle('active-favorite-button');
+        favoriteButton.classList.toggle('favorite-button');
+    }
 }
 
-function toggleFavoriteButton() {
-  let favoriteButton = document.querySelector(".favorite-button");
-  if (selectedCard.favorite === true) {
-    favoriteButton.classList.add("active-favorite-button");
-  } else {
-    favoriteButton.classList.remove("active-favorite-button");
-  }
+function verifyFavoriteValue(recipe) {
+    if (recipe.favorite) {
+        return "active-favorite-button";
+    } else {
+        return "favorite-button";
+    }
+}
+
+function verifyToCookValue(recipe) {
+    if (recipe.toCook) {
+        return "active-to-cook-button";
+    } else {
+        return "cook-button"
+    }
 }
 
 function displayRecipeCards() {
     allRecipes = instantiateRecipes();
     getRandomInt(1, 48);
     for (let i = 0; i < allRecipes.length; i++) {
+        let favoriteValue = verifyFavoriteValue(allRecipes[i]);
+        let toCookValue = verifyToCookValue(allRecipes[i]);
         recipeCardSection.insertAdjacentHTML('beforeend',
       `<article class="card" id=${allRecipes[i].id}>
       <p class="recipe-name">${allRecipes[i].name}</p>
@@ -196,8 +220,8 @@ function displayRecipeCards() {
         <ol>${insertInstructions(allRecipes[i].instructions)}</ol>
       </div>
       <div class="card-footer">
-        <button class="cook-button"></button>
-        <button class="favorite-button"></button>
+        <img class="${toCookValue} this-cook-button"/>
+        <img class="${favoriteValue} this-favorite-button"/>
       </div>
     </article>`
     )
