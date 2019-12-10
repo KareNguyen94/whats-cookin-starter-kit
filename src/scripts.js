@@ -3,12 +3,8 @@ var headerSection = document.querySelector('.user-header');
 let recipes = [];
 let user;
 let pantry;
-let cardId;
-let selectedCard;
-let randomNumber;
 let searchButton = document.querySelector(".search-button");
 let searchInput = document.querySelector('.search-input');
-let returnedAfterSearch;
 
 window.onload = displayRecipeCards();
 
@@ -18,81 +14,12 @@ headerSection.addEventListener("click", handleHeaderClick);
 
 function handleHeaderClick() {
     if (event.target.classList.contains('home-page-button')) {
-        displayHomeCards();
+        displayCards(allRecipes);
     } if (event.target.classList.contains('favorite-page-button')) {
-        displayFavoriteCards();
+        displayCards(user.favoriteRecipes);
     } if (event.target.classList.contains('to-cook-page-button')) {
-        displayToCookCards();
+        displayCards(user.recipesToCook);
     }
-}
-
-function displayHomeCards() {
-    recipeCardSection.innerHTML = '';
-    for (let i = 0; i < allRecipes.length; i++) {
-        let favoriteValue = verifyFavoriteValue(allRecipes[i]);
-        let toCookValue = verifyToCookValue(allRecipes[i]);
-        recipeCardSection.insertAdjacentHTML('beforeend',
-            `<article class="card" id=${allRecipes[i].id}>
-      <p class="recipe-name">${allRecipes[i].name}</p>
-      <img class="food-image" src="${allRecipes[i].image}" alt="${allRecipes[i].name}">
-      <div class="recipe-list">
-        <h3>Ingredients:</h3>
-        <ul>${insertIngredients(allRecipes[i].ingredients)}</ul></br>
-        <h3>Instructions:</h3>
-        <ol>${insertInstructions(allRecipes[i].instructions)}</ol>
-      </div>
-      <div class="card-footer">
-        <img class="${toCookValue} this-cook-button"/>
-        <img class="${favoriteValue} this-favorite-button"/>
-      </div>
-    </article>`
-    )}
-}
-
-function displayFavoriteCards() {
-    recipeCardSection.innerHTML = '';
-    for (let i = 0; i < user.favoriteRecipes.length; i++) {
-        let favoriteValue = verifyFavoriteValue(user.favoriteRecipes[i]);
-        let toCookValue = verifyToCookValue(user.favoriteRecipes[i]);
-        recipeCardSection.insertAdjacentHTML('beforeend',
-            `<article class="card" id=${user.favoriteRecipes[i].id}>
-      <p class="recipe-name">${user.favoriteRecipes[i].name}</p>
-      <img class="food-image" src="${user.favoriteRecipes[i].image}" alt="${user.favoriteRecipes[i].name}">
-      <div class="recipe-list">
-        <h3>Ingredients:</h3>
-        <ul>${insertIngredients(user.favoriteRecipes[i].ingredients)}</ul></br>
-        <h3>Instructions:</h3>
-        <ol>${insertInstructions(user.favoriteRecipes[i].instructions)}</ol>
-      </div>
-      <div class="card-footer">
-        <img class="${toCookValue} this-cook-button"/>
-        <img class="${favoriteValue} this-favorite-button"/>
-      </div>
-    </article>`
-        )}
-}
-
-function displayToCookCards() {
-    recipeCardSection.innerHTML = '';
-    for (let i = 0; i < user.recipesToCook.length; i++) {
-        let favoriteValue = verifyFavoriteValue(user.recipesToCook[i]);
-        let toCookValue = verifyToCookValue(user.recipesToCook[i]);
-        recipeCardSection.insertAdjacentHTML('beforeend',
-            `<article class="card" id=${user.recipesToCook[i].id}>
-      <p class="recipe-name">${user.recipesToCook[i].name}</p>
-      <img class="food-image" src="${user.recipesToCook[i].image}" alt="${user.recipesToCook[i].name}">
-      <div class="recipe-list">
-        <h3>Ingredients:</h3>
-        <ul>${insertIngredients(user.recipesToCook[i].ingredients)}</ul></br>
-        <h3>Instructions:</h3>
-        <ol>${insertInstructions(user.recipesToCook[i].instructions)}</ol>
-      </div>
-      <div class="card-footer">
-        <img class="${toCookValue} this-cook-button"/>
-        <img class="${favoriteValue} this-favorite-button"/>
-      </div>
-    </article>`
-        )}
 }
 
 function handleCardClick() {
@@ -120,7 +47,7 @@ function cookClick() {
 }
 
 function getRandomInt(min, max) {
-    randomNumber = Math.floor(Math.random() * (max - min + 1)) - 1;
+    return Math.floor(Math.random() * (max - min + 1)) - 1;
 }
 
 function instantiateRecipes() {
@@ -131,13 +58,14 @@ function instantiateRecipes() {
   return recipes;
 };
 
-function instantiateUser() {
-    user = new User(usersData[randomNumber]);
+function instantiateUser(number) {
+    console.log(number)
+    user = new User(usersData[number]);
     return user;
 };
 
-function instantiatePantry() {
-  pantry = new Pantry(usersData[0]);
+function instantiatePantry(number) {
+    pantry = new Pantry(usersData[number]);
     return pantry;
 };
 
@@ -206,70 +134,47 @@ function verifyToCookValue(recipe) {
     }
 }
 
-function displayRecipeCards() {
-    allRecipes = instantiateRecipes();
-    getRandomInt(1, 48);
-    for (let i = 0; i < allRecipes.length; i++) {
-        let favoriteValue = verifyFavoriteValue(allRecipes[i]);
-        let toCookValue = verifyToCookValue(allRecipes[i]);
-        recipeCardSection.insertAdjacentHTML('beforeend',
-      `<article class="card" id=${allRecipes[i].id}>
-      <p class="recipe-name">${allRecipes[i].name}</p>
-      <img class="food-image" src="${allRecipes[i].image}" alt="${allRecipes[i].name}">
-      <div class="recipe-list">
-        <h3>Ingredients:</h3>
-        <ul>${insertIngredients(allRecipes[i].ingredients)}</ul></br>
-        <h3>Instructions:</h3>
-        <ol>${insertInstructions(allRecipes[i].instructions)}</ol>
-      </div>
-      <div class="card-footer">
-        <img class="${toCookValue} this-cook-button"/>
-        <img class="${favoriteValue} this-favorite-button"/>
-      </div>
-    </article>`
-    )
-  }
-  instantiateUser();
-  instantiatePantry();
-};
-
-
 function search() {
     var searchValue = searchInput.value.toLowerCase();
     recipeCardSection.innerHTML = "";
-    let returnedAfterSearch = allRecipes.filter(recipe => {
+    let searchResult = allRecipes.filter(recipe => {
         var ingredientSearch = recipe.ingredients.filter(ingredient => {
             return ingredient.name.toLowerCase().includes(searchValue);
         })
         return (recipe.name.toLowerCase().includes(searchValue) || recipe.tags.includes(searchValue) || ingredientSearch.length > 0 
         );
     })
-    console.log('11111111', returnedAfterSearch)
-    createSearchedRecipeCard(returnedAfterSearch);
+    displayCards(searchResult);
 }
 
+function displayRecipeCards() {
+    allRecipes = instantiateRecipes();
+    displayCards(allRecipes);
+    let randomNumber = getRandomInt(1, 48);
+    instantiateUser(randomNumber);
+    instantiatePantry(randomNumber);
+};
 
-
-function createSearchedRecipeCard(recipe) {
-    console.log('22222', recipe)
-    recipe.forEach(singleRecipe => {
-    let favoriteValue = verifyFavoriteValue(singleRecipe);
-    let toCookValue = verifyToCookValue(singleRecipe);
-    recipeCardSection.insertAdjacentHTML('beforeend',
-        `<article class="card" id=${singleRecipe.id}>
-      <p class="recipe-name">${singleRecipe.name}</p>
-      <img class="food-image" src="${singleRecipe.image}" alt="${singleRecipe.name}">
+function displayCards(totalRecipes) {
+    recipeCardSection.innerHTML = '';
+    totalRecipes.forEach(recipe => {
+        let favoriteValue = verifyFavoriteValue(recipe);
+        let toCookValue = verifyToCookValue(recipe);
+        recipeCardSection.insertAdjacentHTML('beforeend',
+            `<article class="card" id=${recipe.id}>
+      <p class="recipe-name">${recipe.name}</p>
+      <img class="food-image" src="${recipe.image}" alt="${recipe.name}">
       <div class="recipe-list">
         <h3>Ingredients:</h3>
-        <ul>${insertIngredients(singleRecipe.ingredients)}</ul></br>
+        <ul>${insertIngredients(recipe.ingredients)}</ul></br>
         <h3>Instructions:</h3>
-        <ol>${insertInstructions(singleRecipe.instructions)}</ol>
+        <ol>${insertInstructions(recipe.instructions)}</ol>
       </div>
       <div class="card-footer">
         <img class="${toCookValue} this-cook-button"/>
         <img class="${favoriteValue} this-favorite-button"/>
       </div>
     </article>`
-    )
+        )
     })
 }
