@@ -150,6 +150,7 @@ function search() {
         );
     })
     displayCards(searchResult);
+    searchInput.innerHTML = '';
 }
 
 function findCurrentPage() {
