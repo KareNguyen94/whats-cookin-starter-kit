@@ -1,3 +1,4 @@
+let currentPage = 'home';
 var recipeCardSection = document.querySelector('.recipe-card-section');
 var headerSection = document.querySelector('.user-header');
 let recipes = [];
@@ -15,10 +16,13 @@ headerSection.addEventListener("click", handleHeaderClick);
 function handleHeaderClick() {
     if (event.target.classList.contains('home-page-button')) {
         displayCards(allRecipes);
+        currentPage = 'home';
     } if (event.target.classList.contains('favorite-page-button')) {
         displayCards(user.favoriteRecipes);
+        currentPage = 'favorite';
     } if (event.target.classList.contains('to-cook-page-button')) {
         displayCards(user.recipesToCook);
+        currentPage = 'to-cook';
     }
 }
 
@@ -136,15 +140,26 @@ function verifyToCookValue(recipe) {
 
 function search() {
     var searchValue = searchInput.value.toLowerCase();
+    let currentPageArray = findCurrentPage();
     recipeCardSection.innerHTML = "";
-    let searchResult = allRecipes.filter(recipe => {
+    let searchResult = currentPageArray.filter(recipe => {
         var ingredientSearch = recipe.ingredients.filter(ingredient => {
             return ingredient.name.toLowerCase().includes(searchValue);
         })
-        return (recipe.name.toLowerCase().includes(searchValue) || recipe.tags.includes(searchValue) || ingredientSearch.length > 0 
+        return (recipe.name.toLowerCase().includes(searchValue) || recipe.tags.includes(searchValue) || ingredientSearch.length > 0
         );
     })
     displayCards(searchResult);
+}
+
+function findCurrentPage() {
+    if (currentPage === 'home') {
+        return allRecipes;
+    } if (currentPage === 'favorite') {
+        return user.favoriteRecipes;
+    } if (currentPage === 'to-cook') {
+        return user.recipesToCook;
+    }
 }
 
 function displayRecipeCards() {
