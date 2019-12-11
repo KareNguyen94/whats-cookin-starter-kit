@@ -6,6 +6,7 @@ let user;
 let pantry;
 let searchButton = document.querySelector(".search-button");
 let searchInput = document.querySelector('.search-input');
+let tagList = document.querySelector(".dropdown-content");
 
 window.onload = displayRecipeCards();
 
@@ -24,6 +25,9 @@ function handleHeaderClick() {
         displayCards(user.recipesToCook);
         currentPage = 'to-cook';
     }
+     if (event.target.classList.contains('tag-button')) {
+       tagClick(allRecipes);
+     }
 }
 
 function handleCardClick() {
@@ -150,7 +154,7 @@ function search() {
         );
     })
     displayCards(searchResult);
-    searchInput.innerHTML = '';
+    searchInput.value = '';
 }
 
 function findCurrentPage() {
@@ -169,7 +173,37 @@ function displayRecipeCards() {
     let randomNumber = getRandomInt(1, 48);
     instantiateUser(randomNumber);
     instantiatePantry(randomNumber);
+    filterTags();
 };
+
+function filterTags() {
+  console.log('hey')
+  let recipeTags = [];
+  console.log(recipeTags)
+  allRecipes.forEach(recipe => {
+    recipe.tags.forEach(tag => {
+      if (!recipeTags.includes(tag)) {
+        recipeTags.push(tag);
+      }
+    });
+  });
+  recipeTags.sort();
+  createTags(recipeTags);
+}
+
+function createTags(allTags) {
+    allTags.forEach(tag => {
+    tagList.insertAdjacentHTML('beforeend',`<li><button class="tag-button" id="${tag}">${tag}</button></li>`);
+  });
+}
+
+function tagClick(allRecipes) {
+  var tagValue = event.target.id;
+  let recipesWithTag = allRecipes.filter(recipe => {
+      return recipe.tags.includes(tagValue);
+  })
+  displayCards(recipesWithTag);
+}
 
 function displayCards(totalRecipes) {
     recipeCardSection.innerHTML = '';
