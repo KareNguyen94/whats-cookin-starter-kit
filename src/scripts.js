@@ -16,14 +16,14 @@ headerSection.addEventListener("click", handleHeaderClick);
 
 function handleHeaderClick() {
     if (event.target.classList.contains('home-page-button')) {
-        displayCards(allRecipes);
         currentPage = 'home';
+        displayCards(allRecipes);
     } if (event.target.classList.contains('favorite-page-button')) {
-        displayCards(user.favoriteRecipes);
         currentPage = 'favorite';
+        displayCards(user.favoriteRecipes);
     } if (event.target.classList.contains('to-cook-page-button')) {
-        displayCards(user.recipesToCook);
         currentPage = 'to-cook';
+        displayCards(user.recipesToCook);
     }
      if (event.target.classList.contains('tag-button')) {
        tagClick(allRecipes);
@@ -205,6 +205,15 @@ function tagClick(allRecipes) {
   displayCards(recipesWithTag);
 }
 
+function showCookButton(page) {
+    console.log(page)
+    if (page === 'to-cook') {
+        return `<button>COOK NOW!</button>`;
+    } else {
+        return ""
+    }
+}
+
 function displayCards(totalRecipes) {
     recipeCardSection.innerHTML = '';
     totalRecipes.forEach(recipe => {
@@ -222,6 +231,7 @@ function displayCards(totalRecipes) {
       </div>
       <div class="card-footer">
         <img class="${toCookValue} this-cook-button"/>
+        ${showCookButton(currentPage)}
         <img class="${favoriteValue} this-favorite-button"/>
       </div>
     </article>`
