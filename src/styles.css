@@ -17,8 +17,9 @@ header {
 }
 
 h1 {
-  font-size: 280%;
+  font-size: 350%;
   font-family: "Pacifico", "cursive";
+  padding: 1%;
 }
 
 .user-input {
@@ -27,15 +28,18 @@ h1 {
 }
 
 .user-header {
-  width: 20%;
+  width: 30%;
+  height: 20px;
   display: flex;
   justify-content: space-between;
+  padding-top: 4%;
 }
 
 .home-page-button,
 .favorite-page-button,
-.to-cook-page-button {
-  font-size: 100%;
+.to-cook-page-button,
+.tag-page-button {
+  font-size: 120%;
   background-color: lightblue;
   border: none;
   font-family: "Pacifico", "cursive";
@@ -45,6 +49,25 @@ h1 {
 .favorite-page-button:hover,
 .to-cook-page-button:hover  {
   text-decoration: underline;
+}
+
+.dropdpwn {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover
+.dropdown-content {
+  display: block;
 }
 
 .search-header {
@@ -61,6 +84,7 @@ h1 {
   width: 100%;
   height: 30px;
   font-family: "Pacifico", "cursive";
+  border-right: 0px;
 }
 
 .search-button {
@@ -136,7 +160,7 @@ article {
 
 .this-cook-button,
 .this-favorite-button {
-    width: 10%;
+  width: 10%;
   height: 30px;
   background-repeat: no-repeat;
   background-size: contain;
