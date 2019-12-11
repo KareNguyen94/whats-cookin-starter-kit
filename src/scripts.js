@@ -6,6 +6,7 @@ let user;
 let pantry;
 let searchButton = document.querySelector(".search-button");
 let searchInput = document.querySelector('.search-input');
+let tagList = document.querySelector(".dropdown-content");
 
 window.onload = displayRecipeCards();
 
@@ -169,7 +170,29 @@ function displayRecipeCards() {
     let randomNumber = getRandomInt(1, 48);
     instantiateUser(randomNumber);
     instantiatePantry(randomNumber);
+    filterTags();
 };
+
+function filterTags() {
+  console.log('hey')
+  let recipeTags = [];
+  console.log(recipeTags)
+  allRecipes.forEach(recipe => {
+    recipe.tags.forEach(tag => {
+      if (!recipeTags.includes(tag)) {
+        recipeTags.push(tag);
+      }
+    });
+  });
+  recipeTags.sort();
+  createTags(recipeTags);
+}
+
+function createTags(allTags) {
+    allTags.forEach(tag => {
+    tagList.insertAdjacentHTML('beforeend',`<li><button class="tag-button" id="${tag}">${tag}</button></li>`);
+  });
+}
 
 function displayCards(totalRecipes) {
     recipeCardSection.innerHTML = '';
