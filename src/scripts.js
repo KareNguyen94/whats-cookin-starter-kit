@@ -25,6 +25,9 @@ function handleHeaderClick() {
         displayCards(user.recipesToCook);
         currentPage = 'to-cook';
     }
+     if (event.target.classList.contains('tag-button')) {
+       tagClick(allRecipes);
+     }
 }
 
 function handleCardClick() {
@@ -151,7 +154,7 @@ function search() {
         );
     })
     displayCards(searchResult);
-    searchInput.innerHTML = '';
+    searchInput.value = '';
 }
 
 function findCurrentPage() {
@@ -192,6 +195,14 @@ function createTags(allTags) {
     allTags.forEach(tag => {
     tagList.insertAdjacentHTML('beforeend',`<li><button class="tag-button" id="${tag}">${tag}</button></li>`);
   });
+}
+
+function tagClick(allRecipes) {
+  var tagValue = event.target.id;
+  let recipesWithTag = allRecipes.filter(recipe => {
+      return recipe.tags.includes(tagValue);
+  })
+  displayCards(recipesWithTag);
 }
 
 function displayCards(totalRecipes) {
