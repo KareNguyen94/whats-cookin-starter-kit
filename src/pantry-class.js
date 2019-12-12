@@ -27,12 +27,12 @@ class Pantry {
   }
 
   checkCost() {
-  let cost = Math.floor(this.itemsNeeded.reduce((acc, item) => {
-    ingredientsData.forEach(ingredient => {
-      if (ingredient.id === item.id) {
-        acc += (ingredient.estimatedCostInCents * item.amount)
-      }
-    })
+    let cost = Math.floor(this.itemsNeeded.reduce((acc, item) => {
+      ingredientsData.forEach(ingredient => {
+        if (ingredient.id === item.id) {
+          acc += (ingredient.estimatedCostInCents * item.amount)
+        }
+      })
       return acc
     }, 0)) / 100;
     displayCost(cost)
