@@ -9,22 +9,22 @@
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
   background-color: lightblue;
   border-bottom: 2px dashed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
   padding: 0% 1%;
 }
 
 h1 {
-  font-size: 300%;
-  font-family: "Pacifico", "cursive";
-  padding: 1%;
   flex: none;
+  font-family: "Pacifico", "cursive";
+  font-size: 300%;
+  padding: 1%;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 .user-input {
@@ -33,66 +33,65 @@ h1 {
 }
 
 .user-header {
-  /* width: 30%; */
-  height: 20px;
   display: flex;
+  height: 20px;
   justify-content: space-between;
   margin-bottom: 2%;
   padding: 0% 10%;
 }
 
-.tag-page-button,
-.home-page-button,
 .favorite-page-button,
+.home-page-button,
+.tag-page-button,
 .to-cook-page-button {
-  background-size: contain;
   background-repeat: no-repeat;
-  padding-left: 35px;
+  background-size: contain;
   padding-bottom: 30px;
+  padding-left: 35px;
 }
 
 .tag-page-button {
-  padding-left: 40px;
   padding-bottom: 0px;
+  padding-left: 40px;
 }
 
-.home-page-button,
 .favorite-page-button,
+.home-page-button,
 .to-cook-page-button,
 .tag-page-button {
-  font-size: 120%;
   background-color: lightblue;
   border: none;
   font-family: "Pacifico", "cursive";
+  font-size: 120%;
 }
 
-.tag-page-button:hover,
-.home-page-button:hover,
 .favorite-page-button:hover,
+.home-page-button:hover,
+.tag-page-button:hover,
 .to-cook-page-button:hover  {
   text-decoration: underline;
 }
 
 .dropdpwn {
-  position: relative;
   display: inline-block;
+  position: relative;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
   background-color: #f1f1f1;
-  min-width: 120px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  padding: 1%;
-  border-radius: 10px;
   border: 1px solid;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  display: none;
+  min-width: 120px;
+  padding: 1%;
+  position: absolute;
+  z-index: 1;
 }
 
 .tag-button {
-  border: none;
   background-color: #f1f1f1;
+  border: none;
   font-size: 17px;
   margin-bottom: 5px;
 }
@@ -104,77 +103,75 @@ h1 {
 
 .search-header {
   display: flex;
-  width: 20%;
   justify-content: space-between;
-  margin-left: 81%;
   margin-bottom: -5%;
-  /* margin-top: -74px; */
+  margin-left: 81%;
   padding: 1%;
-
+  width: 20%;
 }
 
 .search-input {
   border: 2px solid;
   border-radius: 10px 0px 0px 10px;
+  border-right: 0px;
   font-size: 90%;
+  height: 35px;
   padding: 2%;
   width: 100%;
-  height: 35px;
-  border-right: 0px;
 }
 
 .search-button {
   background-color: lightgray;
+  background-image: url("../assets/icons8-search-64.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   border: 2px solid;
   border-radius: 0px 10px 10px 0px;
   height: 35px;
   width: 47px;
-  background-image: url("../assets/icons8-search-64.png");
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 main {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 article {
-  height: auto;
-  width: 298px;
-  overflow-wrap: break-word;
-  margin: 3% 1%;
-  border: 3px solid;
   background-color: white;
+  border: 3px solid;
   border-radius: 10px;
+  height: auto;
+  margin: 3% 1%;
+  overflow-wrap: break-word;
+  width: 298px;
 }
 
 .food-image {
-  width: 292px;
+  border-bottom: 2px solid;
+  border-top: 2px solid;
   height: 250px;
   object-fit: cover;
-  border-top: 2px solid;
-  border-bottom: 2px solid;
+  width: 292px;
 }
 
 .recipe-name {
-  padding: 0% 3%;
-  font-weight: bold;
-  font-size: 20px;
-  text-align: center;
-  height: 80px;
-  display: flex;
-  overflow: scroll;
   align-items: center;
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  height: 80px;
+  padding: 0% 3%;
   justify-content: center;
+  overflow: scroll;
+  text-align: center;
 }
 
 .recipe-list {
-  height: 100px;
-  width: 292px;
   border: 6px double lightblue;
+  height: 100px;
   overflow: scroll;
+  width: 292px;
 }
 
 .card-footer {
@@ -189,8 +186,8 @@ article {
   background-repeat: no-repeat;
   background-size: contain;
   border: none;
-  margin: 2%;
   cursor: pointer;
+  margin: 2%;
   padding: 6%;
 }
 
@@ -205,13 +202,13 @@ article {
 
 }
 
-.favorite-page-button,
-.active-favorite-button {
+.active-favorite-button,
+.favorite-page-button {
   background-image: url("../assets/icons8-heart-50-2.png");
 }
 
-.to-cook-page-button,
-.active-to-cook-button {
+.active-to-cook-button,
+.to-cook-page-button {
   background-image: url("../assets/icons8-cooker-50-2.png");
 }
 
@@ -225,8 +222,8 @@ article {
 
 body {
   background-image: url("https://png.pngtree.com/png-vector/20190318/ourlarge/pngtree-food-doodle-seamless-pattern-png-image_858332.jpg");
-  background-repeat: repeat;
   background: linear-gradient( rgba(255, 255, 255, .7), rgba(255, 255, 255, 0.7)), url("https://png.pngtree.com/png-vector/20190318/ourlarge/pngtree-food-doodle-seamless-pattern-png-image_858332.jpg");
+  background-repeat: repeat;
   background-size: 300px;
   border-top: 1px solid;
   height: auto;
