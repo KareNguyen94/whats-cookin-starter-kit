@@ -243,10 +243,39 @@ const findRecipe = (want) => {
   pantry.checkItemStock(thisRecipe);
 }
 
-const displayInstructions = () => {
-  console.log('DISPLAY')
+const findMissingIngredients = () => {
+  const missingItems = pantry.itemsNeeded.map(item => `<li>${item.amount} ${item.name}</li>`);
+  return missingItems.join('\n');
 }
 
+const displayCost = (cost) => {
+  recipeCardSection.innerHTML = '';
+  recipeCardSection.insertAdjacentHTML('beforeend', 
+    `<section class="show-cost">
+      <h2>Oh, no! It looks like you are missing some ingredients!</h2>
+      <h4>You are missing the following ingredients:</h4>
+      <ul>${findMissingIngredients()}</ul>
+      <p>The cost for these missing ingredients would be $${cost}.</p>
+    </section>
+    `
+    )
+  }
+
+  const displayCookingSteps = (recipe) => {
+    const ingredientSteps = recipe.instructions.map(step => `<li>${step.instruction}</li>`);
+    return ingredientSteps.join('\n');
+  }
+
+const displayInstructions = (recipe) => {
+  recipeCardSection.innerHTML = '';
+  recipeCardSection.insertAdjacentHTML('beforeend',
+    `<section class="show-steps">
+      <h1>Let's get to cookin'!</h1>
+      <ol class="cooking-steps">${displayCookingSteps(recipe)}</ol>
+    </section>
+    `
+  )
+}
 
 window.onload = displayRecipeCards();
 headerSection.addEventListener("click", handleHeaderClick);
