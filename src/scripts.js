@@ -1,8 +1,9 @@
 let currentPage = 'home';
 var headerSection = document.querySelector('.user-header');
 let pantry;
-let searchButton = document.querySelector(".search-button");
 let searchInput = document.querySelector('.search-input');
+let searchButton = document.querySelector(".search-button");
+let tagList = document.querySelector(".dropdown-content");
 var recipeCardSection = document.querySelector('.recipe-card-section');
 let recipes = [];
 let user;
