@@ -14,15 +14,10 @@ class Recipe {
     this.toCook = !this.toCook;
   }
 
-
   toggleFavoriteRecipe(recipe) {
     this.favorite = !this.favorite;
   }
 
-
-  showSteps() {
-
-  }
 }
 
 if (typeof module !== 'undefined') {
