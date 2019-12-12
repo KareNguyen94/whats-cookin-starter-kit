@@ -10,11 +10,11 @@ class Recipe {
     this.toCook = false;
   }
 
-  toggleToCook(recipe) {
+  toggleToCook() {
     this.toCook = !this.toCook;
   }
 
-  toggleFavoriteRecipe(recipe) {
+  toggleFavoriteRecipe() {
     this.favorite = !this.favorite;
   }
 
