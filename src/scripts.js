@@ -42,11 +42,6 @@ function handleCardClick() {
     }
 }
 
-function cookNow() {
-    console.log('cooking')
-
-}
-
 function favoriteClick() {
   let cardId = event.target.parentNode.parentNode.id;
   if (cardId !== "") {
@@ -66,12 +61,12 @@ function getRandomInt(min, max) {
 }
 
 function instantiateRecipes() {
-  for (let i = 0; i < recipeData.length; i++) {
-    let recipe = new Recipe(recipeData[i])
+  recipeData.forEach(data => {
+    let recipe = new Recipe(data)
     recipes.push(recipe)
-  }
+  })
   return recipes;
-};
+}
 
 function instantiateUser(number) {
     user = new User(usersData[number]);
@@ -240,4 +235,18 @@ function displayCards(totalRecipes) {
     </article>`
         )
     })
+}
+
+function cookNow(event) {
+  let recipeToCook = event.target.parentNode.parentNode.id;
+  findRecipe(recipeToCook);
+}
+
+function findRecipe(want) {
+  let thisRecipe = allRecipes.find(recipe => recipe.id === parseInt(want));
+  pantry.checkItemStock(thisRecipe);
+}
+
+function displayInstructions() {
+  console.log('DISPLAY')
 }
