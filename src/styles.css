@@ -11,15 +11,20 @@
 header {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   background-color: lightblue;
   border-bottom: 2px dashed;
   padding: 0% 1%;
 }
 
 h1 {
-  font-size: 350%;
+  font-size: 300%;
   font-family: "Pacifico", "cursive";
   padding: 1%;
+  flex: none;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 .user-input {
@@ -28,11 +33,27 @@ h1 {
 }
 
 .user-header {
-  width: 30%;
+  /* width: 30%; */
   height: 20px;
   display: flex;
   justify-content: space-between;
-  padding-top: 4%;
+  margin-bottom: 2%;
+  padding: 0% 10%;
+}
+
+.tag-page-button,
+.home-page-button,
+.favorite-page-button,
+.to-cook-page-button {
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  padding-bottom: 30px;
+}
+
+.tag-page-button {
+  padding-left: 40px;
+  padding-bottom: 0px;
 }
 
 .home-page-button,
@@ -45,6 +66,7 @@ h1 {
   font-family: "Pacifico", "cursive";
 }
 
+.tag-page-button:hover,
 .home-page-button:hover,
 .favorite-page-button:hover,
 .to-cook-page-button:hover  {
@@ -63,6 +85,16 @@ h1 {
   min-width: 120px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+.tag-button {
+  border: none;
+  background-color: #f1f1f1;
+  font-size: 17px;
+  margin-bottom: 5px;
 }
 
 .dropdown:hover
@@ -73,7 +105,12 @@ h1 {
 .search-header {
   display: flex;
   width: 20%;
-  align-items: center;
+  justify-content: space-between;
+  margin-left: 81%;
+  margin-bottom: -5%;
+  /* margin-top: -74px; */
+  padding: 1%;
+
 }
 
 .search-input {
@@ -82,8 +119,7 @@ h1 {
   font-size: 90%;
   padding: 2%;
   width: 100%;
-  height: 30px;
-  font-family: "Pacifico", "cursive";
+  height: 35px;
   border-right: 0px;
 }
 
@@ -91,9 +127,11 @@ h1 {
   background-color: lightgray;
   border: 2px solid;
   border-radius: 0px 10px 10px 0px;
-  height: 30px;
-  width: 55px;
-  font-family: "Pacifico", "cursive";
+  height: 35px;
+  width: 47px;
+  background-image: url("../assets/icons8-search-64.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 main {
@@ -114,7 +152,7 @@ article {
 
 .food-image {
   width: 292px;
-  height: 290px;
+  height: 250px;
   object-fit: cover;
   border-top: 2px solid;
   border-bottom: 2px solid;
@@ -148,8 +186,6 @@ article {
 .active-to-cook-button ,
 .cook-button,
 .favorite-button {
-  width: 10%;
-  height: 30px;
   background-repeat: no-repeat;
   background-size: contain;
   border: none;
@@ -158,15 +194,6 @@ article {
   padding: 6%;
 }
 
-.this-cook-button,
-.this-favorite-button {
-  width: 10%;
-  height: 30px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  margin: 2%;
-}
 
 .cook-button {
   background-image: url("../assets/icons8-cooker-50.png");
@@ -178,12 +205,22 @@ article {
 
 }
 
+.favorite-page-button,
 .active-favorite-button {
   background-image: url("../assets/icons8-heart-50-2.png");
 }
 
+.to-cook-page-button,
 .active-to-cook-button {
   background-image: url("../assets/icons8-cooker-50-2.png");
+}
+
+.home-page-button {
+  background-image: url("../assets/icons8-home-50.png");
+}
+
+.tag-page-button {
+  background-image: url("../assets/icons8-bulleted-list-50.png");
 }
 
 body {
