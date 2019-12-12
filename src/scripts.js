@@ -9,9 +9,9 @@ let user;
 
 window.onload = displayRecipeCards();
 
+headerSection.addEventListener("click", handleHeaderClick);
 searchButton.addEventListener('click', search);
 recipeCardSection.addEventListener("click", handleCardClick);
-headerSection.addEventListener("click", handleHeaderClick);
 
 function handleHeaderClick() {
     if (event.target.classList.contains('home-page-button')) {
