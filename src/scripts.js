@@ -9,49 +9,51 @@ let recipes = [];
 let user;
 
 const handleHeaderClick = () => {
-    if (event.target.classList.contains('home-page-button')) {
-        currentPage = 'home';
-        displayCards(allRecipes);
-    } if (event.target.classList.contains('favorite-page-button')) {
-        currentPage = 'favorite';
-        displayCards(user.favoriteRecipes);
-    } if (event.target.classList.contains('to-cook-page-button')) {
-        currentPage = 'to-cook';
-        displayCards(user.recipesToCook);
-    }
-     if (event.target.classList.contains('tag-button')) {
-       tagClick(allRecipes);
-     }
+  if (event.target.classList.contains('home-page-button')) {
+    currentPage = 'home';
+    displayCards(allRecipes);
+  } if (event.target.classList.contains('favorite-page-button')) {
+    currentPage = 'favorite';
+    displayCards(user.favoriteRecipes);
+  } if (event.target.classList.contains('to-cook-page-button')) {
+    currentPage = 'to-cook';
+    displayCards(user.recipesToCook);
+  }
+  if (event.target.classList.contains('tag-button')) {
+    tagClick(allRecipes);
+  }
 }
 
 const handleCardClick = () => {
   if (event.target.classList.contains('favorite-button') || event.target.classList.contains('active-favorite-button')) {
     favoriteClick();
     toggleFavoriteButton(event);
-  } if (event.target.classList.contains('cook-button') || event.target.classList.contains('active-to-cook-button')) {
+  }
+  if (event.target.classList.contains('cook-button') || event.target.classList.contains('active-to-cook-button')) {
     cookClick();
     toggleToCookButton(event);
-    } if (event.target.classList.contains('cook-now-button')) {
-        cookNow(event);
-    }
+  }
+  if (event.target.classList.contains('cook-now-button')) {
+    cookNow(event);
+  }
 }
 
 const favoriteClick = () => {
   let cardId = event.target.parentNode.parentNode.id;
   if (cardId !== "") {
-  onFavoriteButtonClick(cardId)
+    onFavoriteButtonClick(cardId)
   }
 }
 
 const cookClick = () => {
   let cardId = event.target.parentNode.parentNode.id;
   if (cardId !== "") {
-  onCookButtonClick(cardId)
+    onCookButtonClick(cardId)
   }
 }
 
 const getRandomInt = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) - 1;
+  return Math.floor(Math.random() * (max - min + 1)) - 1;
 }
 
 const instantiateRecipes = () => {
@@ -63,13 +65,13 @@ const instantiateRecipes = () => {
 }
 
 const instantiateUser = (number) => {
-    user = new User(usersData[number]);
-    return user;
+  user = new User(usersData[number]);
+  return user;
 };
 
 const instantiatePantry = (number) => {
-    pantry = new Pantry(usersData[number]);
-    return pantry;
+  pantry = new Pantry(usersData[number]);
+  return pantry;
 };
 
 const insertInstructions = (steps) => {
@@ -78,7 +80,7 @@ const insertInstructions = (steps) => {
 }
 
 const insertIngredients = (items) => {
-    const ingredientList = items.map(item => `<li>-${(Math.floor(item.quantity.amount * 100) / 100)} ${item.quantity.unit} ${item.name}</li>`);
+  const ingredientList = items.map(item => `<li>-${(Math.floor(item.quantity.amount * 100) / 100)} ${item.quantity.unit} ${item.name}</li>`);
   return ingredientList.join('\n');
 }
 
@@ -88,7 +90,7 @@ const onFavoriteButtonClick = (cardId) => {
       return recipe;
     }
   })
-    user.evaluateFavoriteValue(selectedCard);
+  user.evaluateFavoriteValue(selectedCard);
 }
 
 const onCookButtonClick = (cardId) => {
@@ -97,78 +99,78 @@ const onCookButtonClick = (cardId) => {
       return recipe;
     }
   })
-    user.evaluateToCookValue(selectedCard);
+  user.evaluateToCookValue(selectedCard);
 }
 
 const toggleToCookButton = (event) => {
-    let toCookButton = event.target.closest('.this-cook-button');
-    if (selectedCard.toCook) {
-        toCookButton.classList.toggle('active-to-cook-button');
-        toCookButton.classList.toggle('cook-button');
-    } else {
-        toCookButton.classList.toggle('active-to-cook-button');
-        toCookButton.classList.toggle('cook-button');
-    }
+  let toCookButton = event.target.closest('.this-cook-button');
+  if (selectedCard.toCook) {
+    toCookButton.classList.toggle('active-to-cook-button');
+    toCookButton.classList.toggle('cook-button');
+  } else {
+    toCookButton.classList.toggle('active-to-cook-button');
+    toCookButton.classList.toggle('cook-button');
+  }
 }
 const toggleFavoriteButton = (event) => {
-    let favoriteButton = event.target.closest('.this-favorite-button');
-    if (selectedCard.favorite) {
-        favoriteButton.classList.toggle('active-favorite-button');
-        favoriteButton.classList.toggle('favorite-button');
-    } else {
-        favoriteButton.classList.toggle('active-favorite-button');
-        favoriteButton.classList.toggle('favorite-button');
-    }
+  let favoriteButton = event.target.closest('.this-favorite-button');
+  if (selectedCard.favorite) {
+    favoriteButton.classList.toggle('active-favorite-button');
+    favoriteButton.classList.toggle('favorite-button');
+  } else {
+    favoriteButton.classList.toggle('active-favorite-button');
+    favoriteButton.classList.toggle('favorite-button');
+  }
 }
 
 const verifyFavoriteValue = (recipe) => {
-    if (recipe.favorite) {
-        return "active-favorite-button";
-    } else {
-        return "favorite-button";
-    }
+  if (recipe.favorite) {
+    return "active-favorite-button";
+  } else {
+    return "favorite-button";
+  }
 }
 
 const verifyToCookValue = (recipe) => {
-    if (recipe.toCook) {
-        return "active-to-cook-button";
-    } else {
-        return "cook-button"
-    }
+  if (recipe.toCook) {
+    return "active-to-cook-button";
+  } else {
+    return "cook-button"
+  }
 }
 
 const search = () => {
-    var searchValue = searchInput.value.toLowerCase();
-    let currentPageArray = findCurrentPage();
-    recipeCardSection.innerHTML = "";
-    let searchResult = currentPageArray.filter(recipe => {
-        var ingredientSearch = recipe.ingredients.filter(ingredient => {
-            return ingredient.name.toLowerCase().includes(searchValue);
-        })
-        return (recipe.name.toLowerCase().includes(searchValue) || recipe.tags.includes(searchValue) || ingredientSearch.length > 0
-        );
+  var searchValue = searchInput.value.toLowerCase();
+  let currentPageArray = findCurrentPage();
+  recipeCardSection.innerHTML = "";
+  let searchResult = currentPageArray.filter(recipe => {
+    var ingredientSearch = recipe.ingredients.filter(ingredient => {
+      return ingredient.name.toLowerCase().includes(searchValue);
     })
-    displayCards(searchResult);
-    searchInput.value = '';
+    return (recipe.name.toLowerCase().includes(searchValue) || recipe.tags.includes(searchValue) || ingredientSearch.length > 0
+    );
+  })
+  displayCards(searchResult);
+  searchInput.value = '';
 }
 
 const findCurrentPage = () => {
-    if (currentPage === 'home') {
-        return allRecipes;
-    } if (currentPage === 'favorite') {
-        return user.favoriteRecipes;
-    } if (currentPage === 'to-cook') {
-        return user.recipesToCook;
-    }
+  if (currentPage === 'home') {
+    return allRecipes;
+  } if (currentPage === 'favorite') {
+    return user.favoriteRecipes;
+  } if (currentPage === 'to-cook') {
+    return user.recipesToCook;
+  }
 }
 
 const displayRecipeCards = () => {
-    allRecipes = instantiateRecipes();
-    displayCards(allRecipes);
-    let randomNumber = getRandomInt(1, 48);
-    instantiateUser(randomNumber);
-    instantiatePantry(randomNumber);
-    filterTags();
+  allRecipes = instantiateRecipes();
+  displayCards(allRecipes);
+  let randomNumber = getRandomInt(1, 48);
+  instantiateUser(randomNumber);
+  instantiatePantry(randomNumber);
+  filterTags();
 };
 
 const filterTags = () => {
@@ -185,34 +187,34 @@ const filterTags = () => {
 }
 
 const createTags = (allTags) => {
-    allTags.forEach(tag => {
-    tagList.insertAdjacentHTML('beforeend',`<ul><button class="tag-button" id="${tag}">${tag}</button><ul>`);
+  allTags.forEach(tag => {
+    tagList.insertAdjacentHTML('beforeend', `<ul><button class="tag-button" id="${tag}">${tag}</button><ul>`);
   });
 }
 
 const tagClick = (allRecipes) => {
   var tagValue = event.target.id;
   let recipesWithTag = allRecipes.filter(recipe => {
-      return recipe.tags.includes(tagValue);
+    return recipe.tags.includes(tagValue);
   })
   displayCards(recipesWithTag);
 }
 
 const showCookButton = (page) => {
-    if (page === 'to-cook') {
-        return `<button class="cook-now-button">COOK NOW!</button>`;
-    } else {
-        return ""
-    }
+  if (page === 'to-cook') {
+    return `<button class="cook-now-button">COOK NOW!</button>`;
+  } else {
+    return ""
+  }
 }
 
 const displayCards = (totalRecipes) => {
-    recipeCardSection.innerHTML = '';
-    totalRecipes.forEach(recipe => {
-        let favoriteValue = verifyFavoriteValue(recipe);
-        let toCookValue = verifyToCookValue(recipe);
-        recipeCardSection.insertAdjacentHTML('beforeend',
-            `<article class="card" id=${recipe.id}>
+  recipeCardSection.innerHTML = '';
+  totalRecipes.forEach(recipe => {
+    let favoriteValue = verifyFavoriteValue(recipe);
+    let toCookValue = verifyToCookValue(recipe);
+    recipeCardSection.insertAdjacentHTML('beforeend',
+      `<article class="card" id=${recipe.id}>
       <p class="recipe-name">${recipe.name}</p>
       <img class="food-image" src="${recipe.image}" alt="${recipe.name}">
       <div class="recipe-list">
@@ -227,8 +229,8 @@ const displayCards = (totalRecipes) => {
         <img class="${favoriteValue} this-favorite-button"/>
       </div>
     </article>`
-        )
-    })
+    )
+  })
 }
 
 const cookNow = (event) => {

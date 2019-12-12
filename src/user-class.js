@@ -24,7 +24,7 @@ class User {
 
   addToCook(recipe) {
     this.recipesToCook.push(recipe);
-  recipe.toggleToCook(recipe);
+    recipe.toggleToCook(recipe);
   }
 
   removeToCook(recipe) {
@@ -32,7 +32,7 @@ class User {
     if (index !== -1) {
       this.recipesToCook.splice(index, 1);
     }
-  recipe.toggleToCook(recipe);
+    recipe.toggleToCook(recipe);
   }
 
   addFavoriteRecipe(recipe) {
