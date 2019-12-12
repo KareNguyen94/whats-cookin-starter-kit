@@ -8,13 +8,7 @@ var recipeCardSection = document.querySelector('.recipe-card-section');
 let recipes = [];
 let user;
 
-window.onload = displayRecipeCards();
-
-headerSection.addEventListener("click", handleHeaderClick);
-searchButton.addEventListener('click', search);
-recipeCardSection.addEventListener("click", handleCardClick);
-
-function handleHeaderClick() {
+const handleHeaderClick = () => {
     if (event.target.classList.contains('home-page-button')) {
         currentPage = 'home';
         displayCards(allRecipes);
@@ -30,7 +24,7 @@ function handleHeaderClick() {
      }
 }
 
-function handleCardClick() {
+const handleCardClick = () => {
   if (event.target.classList.contains('favorite-button') || event.target.classList.contains('active-favorite-button')) {
     favoriteClick();
     toggleFavoriteButton(event);
@@ -42,25 +36,25 @@ function handleCardClick() {
     }
 }
 
-function favoriteClick() {
+const favoriteClick = () => {
   let cardId = event.target.parentNode.parentNode.id;
   if (cardId !== "") {
   onFavoriteButtonClick(cardId)
   }
 }
 
-function cookClick() {
+const cookClick = () => {
   let cardId = event.target.parentNode.parentNode.id;
   if (cardId !== "") {
   onCookButtonClick(cardId)
   }
 }
 
-function getRandomInt(min, max) {
+const getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) - 1;
 }
 
-function instantiateRecipes() {
+const instantiateRecipes = () => {
   recipeData.forEach(data => {
     let recipe = new Recipe(data)
     recipes.push(recipe)
@@ -68,27 +62,27 @@ function instantiateRecipes() {
   return recipes;
 }
 
-function instantiateUser(number) {
+const instantiateUser = (number) => {
     user = new User(usersData[number]);
     return user;
 };
 
-function instantiatePantry(number) {
+const instantiatePantry = (number) => {
     pantry = new Pantry(usersData[number]);
     return pantry;
 };
 
-function insertInstructions(steps) {
+const insertInstructions = (steps) => {
   const instructionList = steps.map(step => `<li>${step.number}. ${step.instruction}</li>`);
   return instructionList.join('\n');
 }
 
-function insertIngredients(items) {
+const insertIngredients = (items) => {
     const ingredientList = items.map(item => `<li>-${(Math.floor(item.quantity.amount * 100) / 100)} ${item.quantity.unit} ${item.name}</li>`);
   return ingredientList.join('\n');
 }
 
-function onFavoriteButtonClick(cardId) {
+const onFavoriteButtonClick = (cardId) => {
   selectedCard = recipes.find(recipe => {
     if (recipe.id === parseInt(cardId)) {
       return recipe;
@@ -97,7 +91,7 @@ function onFavoriteButtonClick(cardId) {
     user.evaluateFavoriteValue(selectedCard);
 }
 
-function onCookButtonClick(cardId) {
+const onCookButtonClick = (cardId) => {
   selectedCard = recipes.find(recipe => {
     if (recipe.id === parseInt(cardId)) {
       return recipe;
@@ -106,7 +100,7 @@ function onCookButtonClick(cardId) {
     user.evaluateToCookValue(selectedCard);
 }
 
-function toggleToCookButton(event) {
+const toggleToCookButton = (event) => {
     let toCookButton = event.target.closest('.this-cook-button');
     if (selectedCard.toCook) {
         toCookButton.classList.toggle('active-to-cook-button');
@@ -116,7 +110,7 @@ function toggleToCookButton(event) {
         toCookButton.classList.toggle('cook-button');
     }
 }
-function toggleFavoriteButton(event) {
+const toggleFavoriteButton = (event) => {
     let favoriteButton = event.target.closest('.this-favorite-button');
     if (selectedCard.favorite) {
         favoriteButton.classList.toggle('active-favorite-button');
@@ -127,7 +121,7 @@ function toggleFavoriteButton(event) {
     }
 }
 
-function verifyFavoriteValue(recipe) {
+const verifyFavoriteValue = (recipe) => {
     if (recipe.favorite) {
         return "active-favorite-button";
     } else {
@@ -135,7 +129,7 @@ function verifyFavoriteValue(recipe) {
     }
 }
 
-function verifyToCookValue(recipe) {
+const verifyToCookValue = (recipe) => {
     if (recipe.toCook) {
         return "active-to-cook-button";
     } else {
@@ -143,7 +137,7 @@ function verifyToCookValue(recipe) {
     }
 }
 
-function search() {
+const search = () => {
     var searchValue = searchInput.value.toLowerCase();
     let currentPageArray = findCurrentPage();
     recipeCardSection.innerHTML = "";
@@ -158,7 +152,7 @@ function search() {
     searchInput.value = '';
 }
 
-function findCurrentPage() {
+const findCurrentPage = () => {
     if (currentPage === 'home') {
         return allRecipes;
     } if (currentPage === 'favorite') {
@@ -168,7 +162,7 @@ function findCurrentPage() {
     }
 }
 
-function displayRecipeCards() {
+const displayRecipeCards = () => {
     allRecipes = instantiateRecipes();
     displayCards(allRecipes);
     let randomNumber = getRandomInt(1, 48);
@@ -177,7 +171,7 @@ function displayRecipeCards() {
     filterTags();
 };
 
-function filterTags() {
+const filterTags = () => {
   let recipeTags = [];
   allRecipes.forEach(recipe => {
     recipe.tags.forEach(tag => {
@@ -190,13 +184,13 @@ function filterTags() {
   createTags(recipeTags);
 }
 
-function createTags(allTags) {
+const createTags = (allTags) => {
     allTags.forEach(tag => {
     tagList.insertAdjacentHTML('beforeend',`<ul><button class="tag-button" id="${tag}">${tag}</button><ul>`);
   });
 }
 
-function tagClick(allRecipes) {
+const tagClick = (allRecipes) => {
   var tagValue = event.target.id;
   let recipesWithTag = allRecipes.filter(recipe => {
       return recipe.tags.includes(tagValue);
@@ -204,7 +198,7 @@ function tagClick(allRecipes) {
   displayCards(recipesWithTag);
 }
 
-function showCookButton(page) {
+const showCookButton = (page) => {
     if (page === 'to-cook') {
         return `<button class="cook-now-button">COOK NOW!</button>`;
     } else {
@@ -212,7 +206,7 @@ function showCookButton(page) {
     }
 }
 
-function displayCards(totalRecipes) {
+const displayCards = (totalRecipes) => {
     recipeCardSection.innerHTML = '';
     totalRecipes.forEach(recipe => {
         let favoriteValue = verifyFavoriteValue(recipe);
@@ -237,16 +231,22 @@ function displayCards(totalRecipes) {
     })
 }
 
-function cookNow(event) {
+const cookNow = (event) => {
   let recipeToCook = event.target.parentNode.parentNode.id;
   findRecipe(recipeToCook);
 }
 
-function findRecipe(want) {
+const findRecipe = (want) => {
   let thisRecipe = allRecipes.find(recipe => recipe.id === parseInt(want));
   pantry.checkItemStock(thisRecipe);
 }
 
-function displayInstructions() {
+const displayInstructions = () => {
   console.log('DISPLAY')
 }
+
+
+window.onload = displayRecipeCards();
+headerSection.addEventListener("click", handleHeaderClick);
+searchButton.addEventListener('click', search);
+recipeCardSection.addEventListener("click", handleCardClick);
