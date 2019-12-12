@@ -47,10 +47,6 @@ class User {
     }
     recipe.toggleFavoriteRecipe(recipe);
   }
-
-  toFilterRecipes() {
-
-  }
 }
 
 if (typeof module !== 'undefined') {
