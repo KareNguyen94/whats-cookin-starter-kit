@@ -5,18 +5,29 @@ class Pantry {
     this.itemsNeeded = [];
   }
 
+  combinePantryData() {
+    return this.currentStock.reduce((acc, item) => {
+      if (!acc[item.ingredient]) {
+        acc[item.ingredient] = {amount: item.amount}
+      } else {
+        acc[item.ingredient].amount += item.amount
+      }
+      return acc;
+    }, {})
+  }
+
   checkItemStock(recipe) {
+    let updatedPantry = this.combinePantryData();
     recipe.ingredients.forEach(recipe => {
-      let measurement = recipe.quantity;
       let ingredientName = recipe.name;
       let ingredientId = recipe.id;
-      const userPantryItem = this.currentStock.find(ingredient => ingredient.ingredient === recipe.id);
+      const userPantryItem = Object.keys(updatedPantry).find(key => parseInt(key) === recipe.id);
       if (!userPantryItem) {
         return this.itemsNeeded.push({id: ingredientId, amount: recipe.quantity.amount, name: ingredientName})
       }
       if (recipe.quantity.amount > userPantryItem.amount) {
         let amountNeeded = ((userPantryItem.amount - recipe.quantity.amount) * -1);
-        this.itemsNeeded.push({id: ingredientId, amount: amountNeeded, name: ingredientName, unit: measurement})
+        this.itemsNeeded.push({id: ingredientId, amount: amountNeeded, name: ingredientName})
       }
     })
     if (this.itemsNeeded.length > 0) {

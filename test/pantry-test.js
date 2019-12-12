@@ -23,8 +23,4 @@ describe('ingredients', function () {
   it('should have a current stock that holds the users pantry information', function () {
     expect(pantry.currentStock).to.deep.equal(usersData[0].pantry);
   });
-
-  it('should default to having enough items in stock', function () {
-    expect(pantry.enoughItems).to.equal(true);
-  });
 });
