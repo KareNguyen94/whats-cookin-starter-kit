@@ -7,14 +7,14 @@ class Pantry {
 
   checkItemStock(recipe) {
     recipe.ingredients.forEach(recipe => {
-      let ingredientName = recipe.name;
+      let ingredientId = recipe.id;
       const userPantryItem = this.currentStock.find(ingredient => ingredient.ingredient === recipe.id);
       if (!userPantryItem) {
-        return this.itemsNeeded.push({[ingredientName]: recipe.quantity.amount})
+        return this.itemsNeeded.push({id: ingredientId, amount: recipe.quantity.amount})
       }
       if (recipe.quantity.amount > userPantryItem.amount) {
         let amountNeeded = ((userPantryItem.amount - recipe.quantity.amount) * -1);
-        this.itemsNeeded.push({[ingredientName]: amountNeeded})
+        this.itemsNeeded.push({id: ingredientId, amount: amountNeeded})
       }
     })
     if (this.itemsNeeded.length > 0) {
@@ -23,10 +23,17 @@ class Pantry {
       displayInstructions();
     }
   }
-      
-      
+
+
   checkCost() {
-    console.log('COST')
+  return Math.floor(this.itemsNeeded.reduce((acc, item) => {
+    ingredientsData.forEach(ingredient => {
+      if (ingredient.id === item.id) {
+        acc += (ingredient.estimatedCostInCents * item.amount)
+      }
+    })
+      return acc
+    }, 0)) / 100;
   }
 }
 

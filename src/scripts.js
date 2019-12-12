@@ -1,12 +1,12 @@
 let currentPage = 'home';
-var headerSection = document.querySelector('.user-header');
 let pantry;
 let searchInput = document.querySelector('.search-input');
 let searchButton = document.querySelector(".search-button");
 let tagList = document.querySelector(".dropdown-content");
-var recipeCardSection = document.querySelector('.recipe-card-section');
 let recipes = [];
 let user;
+var headerSection = document.querySelector('.user-header');
+var recipeCardSection = document.querySelector('.recipe-card-section');
 
 const handleHeaderClick = () => {
     if (event.target.classList.contains('home-page-button')) {
