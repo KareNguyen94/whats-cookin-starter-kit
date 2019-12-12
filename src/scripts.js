@@ -16,14 +16,14 @@ headerSection.addEventListener("click", handleHeaderClick);
 
 function handleHeaderClick() {
     if (event.target.classList.contains('home-page-button')) {
-        displayCards(allRecipes);
         currentPage = 'home';
+        displayCards(allRecipes);
     } if (event.target.classList.contains('favorite-page-button')) {
-        displayCards(user.favoriteRecipes);
         currentPage = 'favorite';
+        displayCards(user.favoriteRecipes);
     } if (event.target.classList.contains('to-cook-page-button')) {
-        displayCards(user.recipesToCook);
         currentPage = 'to-cook';
+        displayCards(user.recipesToCook);
     }
      if (event.target.classList.contains('tag-button')) {
        tagClick(allRecipes);
@@ -37,7 +37,14 @@ function handleCardClick() {
   } if (event.target.classList.contains('cook-button') || event.target.classList.contains('active-to-cook-button')) {
     cookClick();
     toggleToCookButton(event);
-  }
+    } if (event.target.classList.contains('cook-now-button')) {
+        cookNow(event);
+    }
+}
+
+function cookNow() {
+    console.log('cooking')
+
 }
 
 function favoriteClick() {
@@ -67,7 +74,6 @@ function instantiateRecipes() {
 };
 
 function instantiateUser(number) {
-    console.log(number)
     user = new User(usersData[number]);
     return user;
 };
@@ -83,7 +89,7 @@ function insertInstructions(steps) {
 }
 
 function insertIngredients(items) {
-  const ingredientList = items.map(item => `<li>-${item.quantity.amount} ${item.quantity.unit} ${item.name}</li>`);
+    const ingredientList = items.map(item => `<li>-${(Math.floor(item.quantity.amount * 100) / 100)} ${item.quantity.unit} ${item.name}</li>`);
   return ingredientList.join('\n');
 }
 
@@ -177,9 +183,7 @@ function displayRecipeCards() {
 };
 
 function filterTags() {
-  console.log('hey')
   let recipeTags = [];
-  console.log(recipeTags)
   allRecipes.forEach(recipe => {
     recipe.tags.forEach(tag => {
       if (!recipeTags.includes(tag)) {
@@ -193,7 +197,7 @@ function filterTags() {
 
 function createTags(allTags) {
     allTags.forEach(tag => {
-    tagList.insertAdjacentHTML('beforeend',`<li><button class="tag-button" id="${tag}">${tag}</button></li>`);
+    tagList.insertAdjacentHTML('beforeend',`<ul><button class="tag-button" id="${tag}">${tag}</button><ul>`);
   });
 }
 
@@ -203,6 +207,14 @@ function tagClick(allRecipes) {
       return recipe.tags.includes(tagValue);
   })
   displayCards(recipesWithTag);
+}
+
+function showCookButton(page) {
+    if (page === 'to-cook') {
+        return `<button class="cook-now-button">COOK NOW!</button>`;
+    } else {
+        return ""
+    }
 }
 
 function displayCards(totalRecipes) {
@@ -222,6 +234,7 @@ function displayCards(totalRecipes) {
       </div>
       <div class="card-footer">
         <img class="${toCookValue} this-cook-button"/>
+        ${showCookButton(currentPage)}
         <img class="${favoriteValue} this-favorite-button"/>
       </div>
     </article>`
