@@ -1,12 +1,11 @@
 let currentPage = 'home';
-var recipeCardSection = document.querySelector('.recipe-card-section');
 var headerSection = document.querySelector('.user-header');
-let recipes = [];
-let user;
 let pantry;
 let searchButton = document.querySelector(".search-button");
 let searchInput = document.querySelector('.search-input');
-let tagList = document.querySelector(".dropdown-content");
+var recipeCardSection = document.querySelector('.recipe-card-section');
+let recipes = [];
+let user;
 
 window.onload = displayRecipeCards();
 
