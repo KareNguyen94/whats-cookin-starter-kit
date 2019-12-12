@@ -15,7 +15,6 @@ header {
   flex-direction: column;
   justify-content: space-between;
   overflow: auto;
-  padding: 0% 1%;
 }
 
 h1 {
@@ -48,11 +47,6 @@ h1 {
   background-size: contain;
   padding-bottom: 30px;
   padding-left: 35px;
-}
-
-.tag-page-button {
-  padding-bottom: 0px;
-  padding-left: 40px;
 }
 
 .favorite-page-button,
@@ -93,7 +87,6 @@ h1 {
   background-color: #f1f1f1;
   border: none;
   font-size: 17px;
-  margin-bottom: 5px;
 }
 
 .dropdown:hover
@@ -104,10 +97,8 @@ h1 {
 .search-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: -5%;
-  margin-left: 81%;
-  padding: 1%;
-  width: 20%;
+  height: 0px;
+  width: 280px;
 }
 
 .search-input {
@@ -218,6 +209,8 @@ article {
 
 .tag-page-button {
   background-image: url("../assets/icons8-bulleted-list-50.png");
+  background-size: 30px 30px;
+  margin-bottom: -25px;
 }
 
 body {
