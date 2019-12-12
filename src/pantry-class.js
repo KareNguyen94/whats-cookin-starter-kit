@@ -22,7 +22,7 @@ class Pantry {
     if (this.itemsNeeded.length > 0) {
       this.checkCost();
     } else {
-      displayInstructions();
+      displayInstructions(recipe);
     }
   }
 

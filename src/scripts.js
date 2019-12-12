@@ -261,8 +261,20 @@ const displayCost = (cost) => {
     )
   }
 
-const displayInstructions = () => {
-  console.log('DISPLAY')
+  const displayCookingSteps = (recipe) => {
+    const ingredientSteps = recipe.instructions.map(step => `<li>${step.instruction}</li>`);
+    return ingredientSteps.join('\n');
+  }
+
+const displayInstructions = (recipe) => {
+  recipeCardSection.innerHTML = '';
+  recipeCardSection.insertAdjacentHTML('beforeend',
+    `<section class="show-steps">
+      <h1>Let's get to cookin'!</h1>
+      <ol class="cooking-steps">${displayCookingSteps(recipe)}</ol>
+    </section>
+    `
+  )
 }
 
 window.onload = displayRecipeCards();
