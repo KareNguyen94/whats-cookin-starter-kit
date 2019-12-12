@@ -13,3 +13,10 @@ Above is an example of the cooking instructions being displayed once a user deci
 
 ![missing ingredients](https://user-images.githubusercontent.com/51294356/70691517-77cf1480-1c76-11ea-9fb2-0c211e328ddb.png)
 Above is an example of the webpage listing the missing ingredients, as well as the total cost.
+
+
+We hope you enjoy our webapp, and hope to hear any feedback you may have!
+
+Collaborators--
+Karen Nguyen (GH: KareNguyen94)
+Ryan Novak (GH: ryan-novak)
