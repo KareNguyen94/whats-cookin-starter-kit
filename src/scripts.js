@@ -238,9 +238,9 @@ const cookNow = (event) => {
   findRecipe(recipeToCook);
 }
 
-const findRecipe = (want) => {
-  let thisRecipe = allRecipes.find(recipe => recipe.id === parseInt(want));
-  pantry.checkItemStock(thisRecipe);
+const findRecipe = (selectedId) => {
+  let selectedRecipe = allRecipes.find(recipe => recipe.id === parseInt(selectedId));
+  pantry.checkItemStock(selectedRecipe);
 }
 
 const findMissingIngredients = () => {
@@ -255,16 +255,16 @@ const displayCost = (cost) => {
       <h2>Oh, no! It looks like you are missing some ingredients!</h2>
       <h4>You are missing the following ingredients:</h4>
       <ul>${findMissingIngredients()}</ul>
-      <p>The cost for these missing ingredients would be $${cost}.</p>
+      <p class="cost-paragraph">The cost for these missing ingredients would be $${cost}.</p>
     </section>
     `
-    )
-  }
+  )
+}
 
-  const displayCookingSteps = (recipe) => {
-    const ingredientSteps = recipe.instructions.map(step => `<li>${step.instruction}</li>`);
-    return ingredientSteps.join('\n');
-  }
+const displayCookingSteps = (recipe) => {
+  const ingredientSteps = recipe.instructions.map(step => `<li>${step.instruction}</li>`);
+  return ingredientSteps.join('\n');
+}
 
 const displayInstructions = (recipe) => {
   recipeCardSection.innerHTML = '';
