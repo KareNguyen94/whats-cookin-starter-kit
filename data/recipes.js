@@ -782,7 +782,7 @@ let recipeData = [
     ]
   },
   {
-    "name": "Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)",
+    "name": "Creamy Coconut Yogurt Bowl with Chocolate Granola",
     "id": 721146,
     "image": "https://spoonacular.com/recipeImages/721146-556x370.jpg",
     "ingredients": [
@@ -2408,7 +2408,7 @@ let recipeData = [
     ]
   },
   {
-    "name": "The Ultimate Healthy Soft & Chewy Pumpkin Chocolate Chip Cookies",
+    "name": "Soft & Chewy Pumpkin Chocolate Chip Cookies",
     "id": 618332,
     "image": "https://spoonacular.com/recipeImages/618332-556x370.jpg",
     "ingredients": [
@@ -2592,7 +2592,7 @@ let recipeData = [
     ]
   },
   {
-    "name": "quinoa tabbouleh",
+    "name": "Quinoa Tabbouleh",
     "id": 880108,
     "image": "https://spoonacular.com/recipeImages/880108-556x370.jpg",
     "ingredients": [
@@ -3309,7 +3309,7 @@ let recipeData = [
     ]
   },
   {
-    "name": "A Cake To Warm Any Heart – Banana Split Cake",
+    "name": "Banana Split Cake",
     "id": 515021,
     "image": "https://spoonacular.com/recipeImages/515021-556x370.jpg",
     "ingredients": [
